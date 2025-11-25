@@ -13,11 +13,11 @@ export default function Skills() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-yellow-400 to-slate-400 bg-clip-text text-transparent">
               Technical Expertise
             </span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mx-auto"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto"></div>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -33,7 +33,7 @@ export default function Skills() {
                 "Data Visualization",
               ],
               icon: <FiBarChart2 className="w-6 h-6" />,
-              color: "emerald",
+              color: "yellow",
             },
             {
               category: "AI & Automation Tools",
@@ -46,7 +46,7 @@ export default function Skills() {
                 "Power Automate",
               ],
               icon: <FiCpu className="w-6 h-6" />,
-              color: "cyan",
+              color: "yellow",
             },
             {
               category: "Programming & Systems",
@@ -59,7 +59,7 @@ export default function Skills() {
                 "GitHub",
               ],
               icon: <FiCode className="w-6 h-6" />,
-              color: "emerald",
+              color: "yellow",
             },
           ].map((group, index) => (
             <motion.div
@@ -67,13 +67,15 @@ export default function Skills() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-xl p-6 hover:border-emerald-400/50 transition-all duration-300"
+              className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-xl p-6 hover:border-yellow-400/50 transition-all duration-300"
             >
               <div
                 className={`flex items-center space-x-3 mb-6 text-${group.color}-400`}
               >
                 {group.icon}
-                <h3 className="text-xl font-bold">{group.category}</h3>
+                <h3 className="text-xl font-bold text-gray-200">
+                  {group.category}
+                </h3>
               </div>
               <div className="space-y-3">
                 {group.skills.map((skill) => (
@@ -81,7 +83,7 @@ export default function Skills() {
                     <div
                       className={`w-2 h-2 bg-${group.color}-400 rounded-full`}
                     ></div>
-                    <span className="text-gray-300">{skill}</span>
+                    <span className="text-gray-400">{skill}</span>
                   </div>
                 ))}
               </div>

@@ -17,7 +17,7 @@ import {
 } from "react-icons/fi";
 import Footer from "@/components/Footer";
 import About from "@/components/About";
-// import Skills from "@/components/Skills";
+import Skills from "@/components/Skills";
 // import Experience from "@/components/Experience";
 // import Publications from "@/components/Publications";
 // import Projects from "@/components/Projects";
@@ -305,10 +305,10 @@ export default function MLPortfolio() {
         </div>
       </section>
       <About />
-      {/* <Skills />
-      <Projects />
+      <Skills />
+      {/* <Projects />
       <Experience />
-      <Publications />  */}
+      <Publications />   */}
       <Footer />
     </div>
   );
