@@ -1,71 +1,87 @@
 "use client";
 import { motion } from "framer-motion";
-import { Brain, Cpu, Database, Code2, Sparkles } from "lucide-react";
+import { FiBarChart2, FiCode, FiCpu } from "react-icons/fi";
 
 export default function Skills() {
   return (
-    <div id="skills" className="py-20 bg-slate-800/50">
+    <section id="skills" className="py-20 bg-black">
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4 text-gradient">
-            Technical Expertise
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+              Technical Expertise
+            </span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
-            Specialized in modern AI/ML technologies and frameworks
-          </p>
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mx-auto"></div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {[
             {
-              icon: Brain,
-              title: "Machine Learning",
-              skills: ["TensorFlow", "PyTorch", "Scikit-learn", "XGBoost"],
-            },
-            {
-              icon: Cpu,
-              title: "Deep Learning",
+              category: "Technical & Analytic Tools",
               skills: [
-                "Neural Networks",
-                "Computer Vision",
-                "NLP",
-                "Transformers",
+                "Python",
+                "SQL",
+                "TensorFlow/PyTorch",
+                "Scikit-learn",
+                "Power BI/Tableau",
+                "Data Visualization",
               ],
+              icon: <FiBarChart2 className="w-6 h-6" />,
+              color: "emerald",
             },
             {
-              icon: Database,
-              title: "Data Engineering",
-              skills: ["Python", "SQL", "Pandas", "Apache Spark"],
+              category: "AI & Automation Tools",
+              skills: [
+                "Jupyter Notebook",
+                "Hugging Face",
+                "Google Colab",
+                "OpenAI ChatGPT API",
+                "Streamlit",
+                "Power Automate",
+              ],
+              icon: <FiCpu className="w-6 h-6" />,
+              color: "cyan",
             },
             {
-              icon: Code2,
-              title: "MLOps & Deployment",
-              skills: ["Docker", "Kubernetes", "AWS/GCP", "FastAPI"],
+              category: "Programming & Systems",
+              skills: [
+                "Deep Learning",
+                "AI Speech Recognition",
+                "OpenCV",
+                "Kaggle",
+                "Vertex AI",
+                "GitHub",
+              ],
+              icon: <FiCode className="w-6 h-6" />,
+              color: "emerald",
             },
-          ].map((category, index) => (
+          ].map((group, index) => (
             <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 40 }}
+              key={group.category}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-purple-500 transition-all group"
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-xl p-6 hover:border-emerald-400/50 transition-all duration-300"
             >
-              <div className="w-12 h-12 tech-gradient rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <category.icon className="w-6 h-6 text-white" />
+              <div
+                className={`flex items-center space-x-3 mb-6 text-${group.color}-400`}
+              >
+                {group.icon}
+                <h3 className="text-xl font-bold">{group.category}</h3>
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-white">
-                {category.title}
-              </h3>
-              <div className="space-y-2">
-                {category.skills.map((skill) => (
-                  <div key={skill} className="flex items-center space-x-2">
-                    <Sparkles className="w-4 h-4 text-purple-400" />
-                    <span className="text-slate-300">{skill}</span>
+              <div className="space-y-3">
+                {group.skills.map((skill) => (
+                  <div key={skill} className="flex items-center space-x-3">
+                    <div
+                      className={`w-2 h-2 bg-${group.color}-400 rounded-full`}
+                    ></div>
+                    <span className="text-gray-300">{skill}</span>
                   </div>
                 ))}
               </div>
@@ -73,6 +89,6 @@ export default function Skills() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

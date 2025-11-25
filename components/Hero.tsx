@@ -1,11 +1,50 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Brain, ChevronDown } from "lucide-react";
+import { Brain, ChevronDown, Cpu, Network } from "lucide-react";
 
 export default function Hero() {
   return (
-    <div className="min-h-screen flex items-center justify-center relative pt-20">
+    <div className="min-h-screen flex items-center justify-center relative pt-20 bg-white">
+      {/* Minimal Background Pattern */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-2 h-2 bg-gray-400 rounded-full opacity-30"></div>
+        <div className="absolute top-40 right-20 w-1 h-1 bg-gray-600 rounded-full opacity-40"></div>
+        <div className="absolute bottom-32 left-1/4 w-3 h-3 bg-gray-500 rounded-full opacity-20"></div>
+        <div className="absolute top-1/2 right-1/3 w-1 h-1 bg-gray-700 rounded-full opacity-50"></div>
+
+        {/* Neural Network Lines */}
+        <svg
+          className="absolute inset-0 w-full h-full opacity-5"
+          viewBox="0 0 100 100"
+        >
+          <path
+            d="M10,10 Q50,30 90,10"
+            stroke="black"
+            strokeWidth="0.5"
+            fill="none"
+          />
+          <path
+            d="M10,30 Q50,50 90,30"
+            stroke="black"
+            strokeWidth="0.5"
+            fill="none"
+          />
+          <path
+            d="M10,50 Q50,70 90,50"
+            stroke="black"
+            strokeWidth="0.5"
+            fill="none"
+          />
+          <path
+            d="M10,70 Q50,90 90,70"
+            stroke="black"
+            strokeWidth="0.5"
+            fill="none"
+          />
+        </svg>
+      </div>
+
       <div className="container mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -14,7 +53,7 @@ export default function Hero() {
           className="max-w-4xl mx-auto"
         >
           <div className="floating mb-8">
-            <div className="w-32 h-32 mx-auto bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+            <div className="w-32 h-32 mx-auto bg-gradient-to-br from-gray-900 via-gray-700 to-gray-900 rounded-full flex items-center justify-center border border-gray-300 shadow-lg">
               <Brain className="w-16 h-16 text-white" />
             </div>
           </div>
@@ -25,11 +64,13 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <span className="text-gradient">Emmanuel Asolo</span>
+            <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent">
+              Emmanuel Asolo
+            </span>
           </motion.h1>
 
           <motion.p
-            className="text-xl md:text-2xl text-slate-300 mb-8"
+            className="text-xl md:text-2xl text-gray-600 mb-8 font-medium"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
@@ -38,7 +79,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.p
-            className="text-lg text-slate-400 max-w-2xl mx-auto mb-12"
+            className="text-lg text-gray-500 max-w-2xl mx-auto mb-12 leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
@@ -56,7 +97,7 @@ export default function Hero() {
           >
             <motion.a
               href="#projects"
-              className="px-8 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all"
+              className="px-8 py-3 bg-gray-900 text-white rounded-full font-semibold hover:bg-gray-800 transition-all border border-gray-900 shadow-sm hover:shadow-md"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -64,12 +105,29 @@ export default function Hero() {
             </motion.a>
             <motion.a
               href="#contact"
-              className="px-8 py-3 border border-slate-600 text-slate-300 rounded-full font-semibold hover:bg-slate-800 transition-all"
+              className="px-8 py-3 border border-gray-300 text-gray-700 rounded-full font-semibold hover:bg-gray-50 transition-all shadow-sm hover:shadow-md"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Get In Touch
             </motion.a>
+          </motion.div>
+
+          {/* Tech Stack Preview */}
+          <motion.div
+            className="mt-16 flex flex-wrap justify-center gap-6 text-gray-500"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            {["TensorFlow", "PyTorch", "Python", "Next.js", "TypeScript"].map(
+              (tech) => (
+                <div key={tech} className="flex items-center space-x-1 text-sm">
+                  <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                  <span>{tech}</span>
+                </div>
+              )
+            )}
           </motion.div>
         </motion.div>
 
@@ -78,7 +136,7 @@ export default function Hero() {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <ChevronDown className="text-slate-400 w-6 h-6" />
+          <ChevronDown className="text-gray-400 w-6 h-6" />
         </motion.div>
       </div>
     </div>
