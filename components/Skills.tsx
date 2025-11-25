@@ -13,9 +13,7 @@ export default function Skills() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-yellow-400 to-slate-400 bg-clip-text text-transparent">
-              Technical Expertise
-            </span>
+            <span className="bg-clip-text text-white">Technical Expertise</span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto"></div>
         </motion.div>

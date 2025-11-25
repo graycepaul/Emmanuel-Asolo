@@ -81,7 +81,7 @@ export default function MLPortfolio() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 href="https://linkedin.com/in/emmanuel-asolo-b197091b7"
-                className="p-2 rounded-lg bg-gray-800 hover:bg-slate-600 transition-colors"
+                className="p-2 rounded-lg bg-gray-800 hover:bg-yellow-600 transition-colors"
               >
                 <FiLinkedin className="w-5 h-5" />
               </motion.a>
@@ -89,7 +89,7 @@ export default function MLPortfolio() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 href="mailto:e.asolo-2023@hull.ac.uk"
-                className="p-2 rounded-lg bg-gray-800 hover:bg-slate-600 transition-colors"
+                className="p-2 rounded-lg bg-gray-800 hover:bg-yellow-600 transition-colors"
               >
                 <FiMail className="w-5 h-5" />
               </motion.a>
@@ -101,8 +101,8 @@ export default function MLPortfolio() {
                   onClick={() => setActiveSection(section.id)}
                   className={`transition-all duration-300 ${
                     activeSection === section.id
-                      ? "text-slate-300 border-b-2 border-slate-300 "
-                      : "text-slate-400 hover:text-slate-300"
+                      ? "text-yellow-500 border-b-2 border-slate-300 "
+                      : "text-slate-100 hover:text-slate-300"
                   }`}
                 >
                   {section.name}

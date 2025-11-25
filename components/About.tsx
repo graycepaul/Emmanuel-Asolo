@@ -16,9 +16,7 @@ export default function About() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-yellow-600 to-slate-400 bg-clip-text text-transparent">
-              About Me
-            </span>
+            <span className="text-white bg-clip-text ">About Me</span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-yellow-600 to-yellow-700 mx-auto"></div>
         </motion.div>
