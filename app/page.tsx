@@ -48,7 +48,7 @@ export default function MLPortfolio() {
           animate={{ scale: 1, opacity: 1 }}
           className="text-center"
         >
-          <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <motion.h2
             className="text-2xl font-bold text-white"
             initial={{ opacity: 0 }}
@@ -58,7 +58,7 @@ export default function MLPortfolio() {
             Emmanuel Asolo
           </motion.h2>
           <motion.p
-            className="text-emerald-400 mt-2"
+            className="text-yellow-600 mt-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
