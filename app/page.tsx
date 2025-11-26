@@ -20,7 +20,7 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 // import Experience from "@/components/Experience";
 // import Publications from "@/components/Publications";
-// import Projects from "@/components/Projects";
+import Projects from "@/components/Projects";
 import Image from "next/image";
 
 export default function MLPortfolio() {
@@ -112,7 +112,6 @@ export default function MLPortfolio() {
           </div>
         </div>
       </nav>
-
       {/* Hero Section */}
       <section
         id="home"
@@ -306,7 +305,8 @@ export default function MLPortfolio() {
       </section>
       <About />
       <Skills />
-      {/* <Projects />
+      <Projects />
+      {/*
       <Experience />
       <Publications />   */}
       <Footer />

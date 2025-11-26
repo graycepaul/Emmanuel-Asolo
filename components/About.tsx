@@ -17,8 +17,8 @@ export default function About() {
         >
           <h2 className="text-4xl font-bold mb-4">
             <span className="text-white bg-clip-text ">About Me</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-yellow-600 to-yellow-700 mx-auto"></div>
+          </h2>{" "}
+          <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto"></div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
@@ -27,7 +27,7 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-yellow-600">
+            <h3 className="text-2xl font-bold mb-6 ">
               Research-Driven AI Innovator
             </h3>
             <p className="text-gray-300 mb-6 leading-relaxed">
