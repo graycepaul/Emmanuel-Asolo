@@ -1,81 +1,124 @@
 "use client";
 import { motion } from "framer-motion";
+import { FiExternalLink, FiFileText } from "react-icons/fi";
 
 export default function Publications() {
+  const publications = [
+    {
+      title:
+        "AI-Powered Decision Support Systems for Sustainable Agriculture Using AI-Chatbot Solution",
+      journal: "Journal of Development: Food, Energy, and Water Systems",
+      year: "2024",
+      type: "authored",
+    },
+    {
+      title:
+        "Enhancing Urban Surveillance with Fog Computing, Mobile Cloud, and Big Data Analytics in 5G Networks",
+      journal:
+        "International Journal of Emerging Multidisciplinary Technologies",
+      year: "2024",
+      type: "authored",
+    },
+    {
+      title:
+        "ChatGPT and the Future of Generative AI: Architecture, Limitations, and Advancements in Large Language Models",
+      journal: "American Journal of Business and Social Research",
+      year: "2025",
+      type: "co-authored",
+    },
+    {
+      title:
+        "Artificial Intelligence-Driven Fuzzy Logic Approach for Optimal Well Selection in Gas Lift Optimization",
+      journal: "Results in Engineering (ScienceDirect)",
+      year: "2025",
+      type: "co-authored",
+    },
+  ];
+
+  const handlePublicationClick = (title: string) => {
+    const searchQuery = encodeURIComponent(title);
+    window.open(
+      `https://scholar.google.com/scholar?q=${searchQuery}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
   return (
-    <section
-      id="publications"
-      className="py-20 bg-gradient-to-b from-black to-gray-900"
-    >
+    <section id="publications" className="py-20 bg-slate-800">
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-              Research Publications
-            </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Research Publications
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mx-auto"></div>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Academic contributions to AI and Data Science research
+          </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-6">
-          {[
-            {
-              title:
-                "AI-Powered Decision Support Systems for Sustainable Agriculture Using AI-Chatbot Solution",
-              journal:
-                "Journal of Development: Food, Energy, and Water Systems (JD-FEWS), 2024",
-              type: "Authored",
-            },
-            {
-              title:
-                "Enhancing Urban Surveillance with Fog Computing, Mobile Cloud, and Big Data Analytics in 5G Networks",
-              journal:
-                "International Journal of Emerging Multidisciplinary Technologies (IJEMT), 2024",
-              type: "Authored",
-            },
-            {
-              title:
-                "ChatGPT and the Future of Generative AI: Architecture, Limitations, and Advancements in Large Language Models",
-              journal:
-                "American Journal of Business and Social Research (AJBSR), 2025",
-              type: "Co-authored",
-            },
-            {
-              title:
-                "Artificial Intelligence-Driven Fuzzy Logic Approach for Optimal Well Selection in Gas Lift Optimization",
-              journal: "Results in Engineering (ScienceDirect), 2025",
-              type: "Co-authored",
-            },
-          ].map((pub, index) => (
+        {/* Minimal Cards Layout */}
+        <div className="grid md:grid-cols-2 gap-4 max-w-6xl mx-auto">
+          {publications.map((pub, index) => (
             <motion.div
               key={pub.title}
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-xl p-6 hover:border-emerald-400/50 transition-all duration-300 group"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group"
             >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
-                <h3 className="text-lg font-semibold text-white group-hover:text-emerald-400 transition-colors flex-1">
+              <div
+                onClick={() => handlePublicationClick(pub.title)}
+                className="bg-gray-900/30 border border-gray-800/50 rounded-lg p-5 cursor-pointer hover:border-yellow-400/30 transition-all duration-300 h-full flex flex-col"
+              >
+                {/* Year and Type */}
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-yellow-400 text-sm font-semibold">
+                    {pub.year}
+                  </span>
+                  <span
+                    className={`text-xs px-2 py-1 rounded ${
+                      pub.type === "authored"
+                        ? "bg-yellow-400/10 text-yellow-400"
+                        : "bg-blue-400/10 text-blue-400"
+                    }`}
+                  >
+                    {pub.type}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-white text-sm font-medium mb-3 line-clamp-3 group-hover:text-yellow-400 transition-colors duration-300">
                   {pub.title}
                 </h3>
-                <span
-                  className={`text-xs font-semibold px-3 py-1 rounded-full mt-2 md:mt-0 ${
-                    pub.type === "Authored"
-                      ? "bg-emerald-400/10 text-emerald-400"
-                      : "bg-cyan-400/10 text-cyan-400"
-                  }`}
-                >
-                  {pub.type}
-                </span>
+
+                {/* Journal */}
+                <div className="flex items-center gap-2 text-gray-400 text-xs mt-auto">
+                  <FiFileText className="w-3 h-3 text-yellow-400/70" />
+                  <span className="line-clamp-1">{pub.journal}</span>
+                </div>
+
+                {/* Hover Action */}
+                <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <FiExternalLink className="w-4 h-4 text-yellow-400" />
+                </div>
               </div>
-              <p className="text-cyan-400 text-sm">{pub.journal}</p>
             </motion.div>
           ))}
+        </div>
+
+        {/* Simple CTA */}
+        <div className="text-center mt-8">
+          <button
+            onClick={() => window.open("https://scholar.google.com", "_blank")}
+            className="text-yellow-400 hover:text-yellow-300 text-sm transition-colors duration-300"
+          >
+            View all publications on Google Scholar →
+          </button>
         </div>
       </div>
     </section>

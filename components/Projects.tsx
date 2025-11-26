@@ -1,10 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FiExternalLink, FiGithub, FiAward } from "react-icons/fi";
+import { useState } from "react";
 
 export default function Projects() {
-  const projects = [
+  const [showAll, setShowAll] = useState(false);
+
+  const allProjects = [
     {
       title: "HealthTech Hackathon 2025 Finalist",
       description:
@@ -71,10 +74,74 @@ export default function Projects() {
       tech: ["Fog Computing", "5G", "Big Data", "Cloud"],
       status: "Research",
     },
+    {
+      title: "UK Food & Drink Spending Analysis",
+      description:
+        "Used Matplotlib to analyze, compare, and visualize UK food & drink spending (1997–2022); projected 2024 values.",
+      category: "Data Visualization",
+      tech: ["Python", "Matplotlib", "Pandas", "Data Analysis"],
+      status: "Completed",
+    },
+    {
+      title: "Computer Vision Object Recognition",
+      description:
+        "Created a Computer Vision Demo with Teachable Machine for live classification and object recognition.",
+      category: "Computer Vision",
+      tech: [
+        "Teachable Machine",
+        "Computer Vision",
+        "JavaScript",
+        "TensorFlow.js",
+      ],
+      status: "Completed",
+    },
+    {
+      title: "MCU Movies Database",
+      description:
+        "Built and queried an SQLite database for MCU movies with complex queries and data management.",
+      category: "Database",
+      tech: ["SQLite", "Python", "Database Design", "SQL"],
+      status: "Completed",
+    },
+    {
+      title: "Hybrid Deep Learning for Fake News Detection",
+      description:
+        "Case Study: Hybrid Deep Learning FastText and Explainable AI for Fake News Detection using CNN LSTM.",
+      category: "Deep Learning",
+      tech: ["FastText", "CNN", "LSTM", "Explainable AI"],
+      status: "Research",
+    },
+    {
+      title: "Transaction Data Mining",
+      description:
+        "Hands-on experience in transaction data mining and itemset discovery; implemented Apriori pipelines end-to-end.",
+      category: "Data Mining",
+      tech: [
+        "Apriori Algorithm",
+        "Data Mining",
+        "Python",
+        "Market Basket Analysis",
+      ],
+      status: "Completed",
+    },
+    {
+      title: "Titanic Survival Prediction",
+      description:
+        "Predicted Titanic survival from passenger features using Python, with comprehensive dataset analysis including imputation and visualization.",
+      category: "Machine Learning",
+      tech: ["Python", "Classification", "Data Imputation", "Visualization"],
+      status: "Completed",
+    },
   ];
 
+  const displayedProjects = showAll ? allProjects : allProjects.slice(0, 6);
+
+  const toggleShowAll = () => {
+    setShowAll(!showAll);
+  };
+
   return (
-    <section id="projects" className="py-20 bg-black">
+    <section id="projects" className="py-20 bg-gray-900">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-yellow-500/5 rounded-full blur-3xl"></div>
@@ -99,96 +166,103 @@ export default function Projects() {
             transition={{ delay: 0.4 }}
             className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed"
           >
-            Explore my latest work in AI, Data Science, and Machine Learning.
-            Each project demonstrates practical applications of cutting-edge
-            technologies.
+            Explore my work in AI, Data Science, and Machine Learning.
+            {!showAll && " Showing 6 of " + allProjects.length + " projects."}
           </motion.p>
         </motion.div>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="group relative"
-            >
-              {/* Project Card */}
-              <div className="relative bg-gray-900/40 backdrop-blur-sm border border-gray-800/60 rounded-xl p-5 transition-all duration-500 group-hover:border-gray-700/80 group-hover:bg-gray-900/60 h-full flex flex-col overflow-hidden">
-                {/* Subtle Accent Bar */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400/80 via-yellow-500/60 to-yellow-400/80 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+          <AnimatePresence>
+            {displayedProjects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="group relative"
+              >
+                {/* Project Card */}
+                <div className="relative bg-gray-800 backdrop-blur-sm border border-gray-800/60 rounded-xl p-5 transition-all duration-500 group-hover:border-gray-700 group-hover:bg-gray-900 h-full flex flex-col overflow-hidden">
+                  {/* Subtle Accent Bar */}
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400/80 via-yellow-500/60 to-yellow-400/80 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
 
-                {/* Header Section */}
-                <div className="flex justify-between items-start mb-4">
-                  <span
-                    className={`text-xs font-medium px-2.5 py-1 rounded-full ${
-                      project.status === "Finalist"
-                        ? "bg-yellow-400/10 text-yellow-300 border border-yellow-400/20"
-                        : project.status === "Research"
-                        ? "bg-blue-400/10 text-blue-300 border border-blue-400/20"
-                        : "bg-gray-400/10 text-gray-300 border border-gray-400/20"
-                    }`}
-                  >
-                    {project.status}
-                  </span>
+                  {/* Header Section */}
+                  <div className="flex justify-between items-start mb-4">
+                    <span
+                      className={`text-xs font-medium px-2.5 py-1 rounded-full ${
+                        project.status === "Finalist"
+                          ? "bg-yellow-400/10 text-yellow-300 border border-yellow-400/20"
+                          : project.status === "Research"
+                          ? "bg-blue-400/10 text-blue-300 border border-blue-400/20"
+                          : "bg-gray-400/10 text-gray-300 border border-gray-400/20"
+                      }`}
+                    >
+                      {project.status}
+                    </span>
 
-                  {project.featured && (
-                    <div className="flex items-center space-x-1 text-yellow-400/80">
-                      <FiAward className="w-3.5 h-3.5" />
-                    </div>
-                  )}
-                </div>
-
-                {/* Project Content */}
-                <div className="flex-1 mb-4">
-                  <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-yellow-400/90 transition-colors duration-300 leading-tight">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Tech Stack */}
-                <div className="mb-4">
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-xs px-2.5 py-1 bg-gray-800/40 text-gray-400 rounded-md border border-gray-700/30 group-hover:border-gray-600/50 transition-colors duration-300"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    {project.featured && (
+                      <div className="flex items-center space-x-1 text-yellow-400/80">
+                        <FiAward className="w-3.5 h-3.5" />
+                      </div>
+                    )}
                   </div>
+
+                  {/* Project Content */}
+                  <div className="flex-1 mb-4">
+                    <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-yellow-400/90 transition-colors duration-300 leading-tight">
+                      {project.title}
+                    </h3>
+
+                    <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className="mb-4">
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tech.slice(0, 4).map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-xs px-2.5 py-1 bg-gray-800/40 text-gray-400 rounded-md border border-gray-700/30 group-hover:border-gray-600/50 transition-colors duration-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.tech.length > 4 && (
+                        <span className="text-xs px-2.5 py-1 bg-gray-800/20 text-gray-500 rounded-md">
+                          +{project.tech.length - 4}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex space-x-2 pt-3 border-t border-gray-800/40">
+                    <button className="flex-1 bg-gray-800/50 text-gray-300 py-2 px-3 rounded-lg text-sm hover:bg-gray-700/50 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2 border border-gray-700/30">
+                      <FiExternalLink className="w-3.5 h-3.5" />
+                      <span>Details</span>
+                    </button>
+                    <button className="p-2 bg-gray-800/50 text-gray-400 rounded-lg hover:bg-gray-700/50 hover:text-white transition-all duration-300 border border-gray-700/30">
+                      <FiGithub className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+
+                  {/* Subtle Hover Effects */}
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-yellow-400/3 via-transparent to-yellow-400/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
                 </div>
 
-                {/* Action Buttons - More Subtle */}
-                <div className="flex space-x-2 pt-3 border-t border-gray-800/40">
-                  <button className="flex-1 bg-gray-800/50 text-gray-300 py-2 px-3 rounded-lg text-sm hover:bg-gray-700/50 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2 border border-gray-700/30">
-                    <FiExternalLink className="w-3.5 h-3.5" />
-                    <span>Details</span>
-                  </button>
-                  <button className="p-2 bg-gray-800/50 text-gray-400 rounded-lg hover:bg-gray-700/50 hover:text-white transition-all duration-300 border border-gray-700/30">
-                    <FiGithub className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-
-                {/* Subtle Hover Effects */}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-yellow-400/3 via-transparent to-yellow-400/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-              </div>
-
-              {/* Very Subtle Background Glow */}
-              <div className="absolute inset-0 rounded-xl bg-yellow-400/3 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-20 scale-105" />
-            </motion.div>
-          ))}
+                {/* Very Subtle Background Glow */}
+                <div className="absolute inset-0 rounded-xl bg-yellow-400/3 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-20 scale-105" />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
 
-        {/* View More Button */}
+        {/* View More/Less Button */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -201,10 +275,25 @@ export default function Projects() {
               boxShadow: "0 10px 30px -10px rgba(245, 158, 11, 0.3)",
             }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 border-2 border-yellow-400 text-yellow-400 rounded-xl font-semibold hover:bg-yellow-400/10 transition-all duration-300"
+            onClick={toggleShowAll}
+            className="px-8 py-4 border-2 border-yellow-400 text-yellow-400 rounded-xl font-semibold hover:bg-yellow-400/10 transition-all duration-300 flex items-center justify-center space-x-2 mx-auto"
           >
-            View All Projects
+            <span>
+              {showAll
+                ? `Show Less (${allProjects.length})`
+                : `View All Projects (${allProjects.length})`}
+            </span>
           </motion.button>
+
+          {!showAll && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-gray-500 text-sm mt-4"
+            >
+              Showing 6 of {allProjects.length} projects
+            </motion.p>
+          )}
         </motion.div>
       </div>
     </section>

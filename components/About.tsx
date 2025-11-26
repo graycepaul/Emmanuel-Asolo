@@ -17,7 +17,7 @@ export default function About() {
         >
           <h2 className="text-4xl font-bold mb-4">
             <span className="text-white bg-clip-text ">About Me</span>
-          </h2>{" "}
+          </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto"></div>
         </motion.div>
 

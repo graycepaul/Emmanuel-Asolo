@@ -8,18 +8,13 @@ import {
   FiChevronDown,
   FiCode,
   FiCpu,
-  // FiDatabase,
-  // FiBarChart2,
-  FiAward,
-  // FiBook,
-  // FiUsers,
   FiUser,
 } from "react-icons/fi";
 import Footer from "@/components/Footer";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
-// import Experience from "@/components/Experience";
-// import Publications from "@/components/Publications";
+import Experience from "@/components/Experience";
+import Publications from "@/components/Publications";
 import Projects from "@/components/Projects";
 import Image from "next/image";
 
@@ -112,10 +107,11 @@ export default function MLPortfolio() {
           </div>
         </div>
       </nav>
+
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center relative overflow-hidden bg-black mt-20 lg:mt-0"
+        className="min-h-screen flex items-center relative overflow-hidden bg-linear-to-b from-#0C0F17 to-gray-900 mt-20 lg:mt-0"
       >
         {/* Yellow Accent Elements */}
         <div className="absolute top-1/4 -left-10 w-72 h-72 bg-yellow-500/5 rounded-full blur-3xl"></div>
@@ -306,9 +302,8 @@ export default function MLPortfolio() {
       <About />
       <Skills />
       <Projects />
-      {/*
       <Experience />
-      <Publications />   */}
+      <Publications />
       <Footer />
     </div>
   );
