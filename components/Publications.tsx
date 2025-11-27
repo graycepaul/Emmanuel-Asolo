@@ -7,13 +7,7 @@ import {
   FiChevronLeft,
   FiChevronRight,
 } from "react-icons/fi";
-
-interface Publication {
-  title: string;
-  journal: string;
-  year: string;
-  type: "authored" | "co-authored";
-}
+import { publications } from "@/app/data";
 
 interface PublicationsProps {
   id: string;
@@ -22,71 +16,6 @@ interface PublicationsProps {
 export default function Publications({ id }: PublicationsProps) {
   const [showAll, setShowAll] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
-
-  const publications: Publication[] = [
-    {
-      title:
-        "AI-Powered Decision Support Systems for Sustainable Agriculture Using AI-Chatbot Solution",
-      journal:
-        "Journal of Development: Food, Energy, and Water Systems (JD-FEWS)",
-      year: "2024",
-      type: "authored",
-    },
-    {
-      title:
-        "Enhancing Urban Surveillance with Fog Computing, Mobile Cloud, and Big Data Analytics in 5G Networks",
-      journal:
-        "International Journal of Emerging Multidisciplinary Technologies (IJEMT)",
-      year: "2024",
-      type: "authored",
-    },
-    {
-      title:
-        "ChatGPT and the Future of Generative AI: Architecture, Limitations, and Advancements in Large Language Models",
-      journal: "American Journal of Business and Social Research (AJBSR)",
-      year: "2025",
-      type: "co-authored",
-    },
-    {
-      title:
-        "Artificial Intelligence-Driven Fuzzy Logic Approach for Optimal Well Selection in Gas Lift Optimization",
-      journal: "Results in Engineering (ScienceDirect)",
-      year: "2025",
-      type: "co-authored",
-    },
-    {
-      title:
-        "Assessing the Cybersecurity Risks Associated with the Internet of Things (IoT) Devices",
-      journal:
-        "Makilauniss Journal of Advanced Engineering International (MJAEI)",
-      year: "2024",
-      type: "co-authored",
-    },
-    {
-      title:
-        "Organizational Communication Culture as a Correlate of Employee Productivity in South-West Nigeria",
-      journal:
-        "International Journal of Progressive Sciences and Technologies (IJPSAT)",
-      year: "2024",
-      type: "co-authored",
-    },
-    {
-      title:
-        "AI-Powered Decision Support Systems for Sustainable Agriculture Using AI-Chatbot Solution",
-      journal:
-        "Journal of Development: Food, Energy, and Water Systems (JD-FEWS)",
-      year: "2024",
-      type: "co-authored",
-    },
-    {
-      title:
-        "Enhancing Urban Surveillance with Fog Computing, Mobile Cloud, and Big Data Analytics in 5G Networks",
-      journal:
-        "International Journal of Emerging Multidisciplinary Technologies (IJEMT)",
-      year: "2024",
-      type: "co-authored",
-    },
-  ];
 
   const initialPublications = publications.slice(0, 4);
   const additionalPublications = publications.slice(4);
