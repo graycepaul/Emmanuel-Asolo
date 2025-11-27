@@ -1,9 +1,96 @@
 "use client";
-import { NavProps, publications } from "@/app/data";
-import { motion } from "framer-motion";
-import { FiExternalLink, FiFileText } from "react-icons/fi";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FiExternalLink,
+  FiFileText,
+  FiChevronLeft,
+  FiChevronRight,
+} from "react-icons/fi";
 
-export default function Publications({ id }: NavProps) {
+interface Publication {
+  title: string;
+  journal: string;
+  year: string;
+  type: "authored" | "co-authored";
+}
+
+interface PublicationsProps {
+  id: string;
+}
+
+export default function Publications({ id }: PublicationsProps) {
+  const [showAll, setShowAll] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const publications: Publication[] = [
+    {
+      title:
+        "AI-Powered Decision Support Systems for Sustainable Agriculture Using AI-Chatbot Solution",
+      journal:
+        "Journal of Development: Food, Energy, and Water Systems (JD-FEWS)",
+      year: "2024",
+      type: "authored",
+    },
+    {
+      title:
+        "Enhancing Urban Surveillance with Fog Computing, Mobile Cloud, and Big Data Analytics in 5G Networks",
+      journal:
+        "International Journal of Emerging Multidisciplinary Technologies (IJEMT)",
+      year: "2024",
+      type: "authored",
+    },
+    {
+      title:
+        "ChatGPT and the Future of Generative AI: Architecture, Limitations, and Advancements in Large Language Models",
+      journal: "American Journal of Business and Social Research (AJBSR)",
+      year: "2025",
+      type: "co-authored",
+    },
+    {
+      title:
+        "Artificial Intelligence-Driven Fuzzy Logic Approach for Optimal Well Selection in Gas Lift Optimization",
+      journal: "Results in Engineering (ScienceDirect)",
+      year: "2025",
+      type: "co-authored",
+    },
+    {
+      title:
+        "Assessing the Cybersecurity Risks Associated with the Internet of Things (IoT) Devices",
+      journal:
+        "Makilauniss Journal of Advanced Engineering International (MJAEI)",
+      year: "2024",
+      type: "co-authored",
+    },
+    {
+      title:
+        "Organizational Communication Culture as a Correlate of Employee Productivity in South-West Nigeria",
+      journal:
+        "International Journal of Progressive Sciences and Technologies (IJPSAT)",
+      year: "2024",
+      type: "co-authored",
+    },
+    {
+      title:
+        "AI-Powered Decision Support Systems for Sustainable Agriculture Using AI-Chatbot Solution",
+      journal:
+        "Journal of Development: Food, Energy, and Water Systems (JD-FEWS)",
+      year: "2024",
+      type: "co-authored",
+    },
+    {
+      title:
+        "Enhancing Urban Surveillance with Fog Computing, Mobile Cloud, and Big Data Analytics in 5G Networks",
+      journal:
+        "International Journal of Emerging Multidisciplinary Technologies (IJEMT)",
+      year: "2024",
+      type: "co-authored",
+    },
+  ];
+
+  const initialPublications = publications.slice(0, 4);
+  const additionalPublications = publications.slice(4);
+
   const handlePublicationClick = (title: string) => {
     const searchQuery = encodeURIComponent(title);
     window.open(
@@ -11,6 +98,22 @@ export default function Publications({ id }: NavProps) {
       "_blank",
       "noopener,noreferrer"
     );
+  };
+
+  const scrollLeft = () => {
+    const container = document.getElementById("publications-scroll");
+    if (container) {
+      container.scrollLeft -= 300;
+      setScrollPosition(container.scrollLeft - 300);
+    }
+  };
+
+  const scrollRight = () => {
+    const container = document.getElementById("publications-scroll");
+    if (container) {
+      container.scrollLeft += 300;
+      setScrollPosition(container.scrollLeft + 300);
+    }
   };
 
   return (
@@ -30,11 +133,11 @@ export default function Publications({ id }: NavProps) {
           </p>
         </motion.div>
 
-        {/* Minimal Cards Layout */}
-        <div className="grid md:grid-cols-2 gap-4 max-w-6xl mx-auto">
-          {publications.map((pub, index) => (
+        {/* Initial Publications Grid */}
+        <div className="grid md:grid-cols-2 gap-4 max-w-6xl mx-auto mb-8">
+          {initialPublications.map((pub, index) => (
             <motion.div
-              key={pub.title}
+              key={`${pub.title}-${index}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -80,15 +183,155 @@ export default function Publications({ id }: NavProps) {
           ))}
         </div>
 
-        {/* Simple CTA */}
-        <div className="text-center mt-8">
-          <button
-            onClick={() => window.open("https://scholar.google.com", "_blank")}
-            className="text-yellow-400 hover:text-yellow-300 text-sm transition-colors duration-300"
-          >
-            View all publications on Google Scholar →
-          </button>
-        </div>
+        {/* View All Publications Toggle */}
+        <AnimatePresence>
+          {!showAll && additionalPublications.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="text-center mb-8"
+            >
+              <button
+                onClick={() => setShowAll(true)}
+                className="text-yellow-400 hover:text-yellow-300 text-sm transition-colors duration-300 border border-yellow-400/30 hover:border-yellow-400/50 rounded-lg px-6 py-2"
+              >
+                View All Publications ({publications.length})
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Additional Publications Horizontal Scroll */}
+        <AnimatePresence>
+          {showAll && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mt-8"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-white text-lg font-semibold">
+                  Additional Publications
+                </h3>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={scrollLeft}
+                    className="p-2 rounded-lg bg-gray-800 hover:bg-yellow-400 hover:text-black transition-all duration-300"
+                  >
+                    <FiChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={scrollRight}
+                    className="p-2 rounded-lg bg-gray-800 hover:bg-yellow-400 hover:text-black transition-all duration-300"
+                  >
+                    <FiChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="relative">
+                <div
+                  id="publications-scroll"
+                  className="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide scroll-smooth"
+                  style={{ scrollBehavior: "smooth" }}
+                >
+                  {additionalPublications.map((pub, index) => (
+                    <motion.div
+                      key={`additional-${pub.title}-${index}`}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="flex-shrink-0 w-80" // Fixed width for consistent cards
+                    >
+                      <div
+                        onClick={() => handlePublicationClick(pub.title)}
+                        className="bg-gray-900/30 border border-gray-800/50 rounded-lg p-5 cursor-pointer hover:border-yellow-400/30 transition-all duration-300 h-full flex flex-col group"
+                      >
+                        {/* Year and Type */}
+                        <div className="flex justify-between items-center mb-3">
+                          <span className="text-yellow-400 text-sm font-semibold">
+                            {pub.year}
+                          </span>
+                          <span
+                            className={`text-xs px-2 py-1 rounded ${
+                              pub.type === "authored"
+                                ? "bg-yellow-400/10 text-yellow-400"
+                                : "bg-blue-400/10 text-blue-400"
+                            }`}
+                          >
+                            {pub.type}
+                          </span>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="text-white text-sm font-medium mb-3 line-clamp-3 group-hover:text-yellow-400 transition-colors duration-300">
+                          {pub.title}
+                        </h3>
+
+                        {/* Journal */}
+                        <div className="flex items-center gap-2 text-gray-400 text-xs mt-auto">
+                          <FiFileText className="w-3 h-3 text-yellow-400/70" />
+                          <span className="line-clamp-2">{pub.journal}</span>
+                        </div>
+
+                        {/* Hover Action */}
+                        <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <FiExternalLink className="w-4 h-4 text-yellow-400" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Scroll gradient indicators */}
+                <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-black to-transparent pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-black to-transparent pointer-events-none" />
+              </div>
+
+              {/* Hide All Publications Button */}
+              <div className="text-center mt-6">
+                <button
+                  onClick={() => setShowAll(false)}
+                  className="text-gray-400 hover:text-white text-sm transition-colors duration-300"
+                >
+                  Hide Additional Publications
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Publication Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="text-center mt-12"
+        >
+          <div className="inline-flex items-center space-x-6 text-sm text-gray-400">
+            <span>
+              Total Publications:{" "}
+              <strong className="text-yellow-400">{publications.length}</strong>
+            </span>
+            <span>•</span>
+            <span>
+              Authored:{" "}
+              <strong className="text-yellow-400">
+                {publications.filter((p) => p.type === "authored").length}
+              </strong>
+            </span>
+            <span>•</span>
+            <span>
+              Co-authored:{" "}
+              <strong className="text-yellow-400">
+                {publications.filter((p) => p.type === "co-authored").length}
+              </strong>
+            </span>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
