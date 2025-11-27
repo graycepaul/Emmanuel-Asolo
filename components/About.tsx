@@ -1,13 +1,11 @@
 import { FiBarChart2, FiCode, FiCpu, FiDatabase } from "react-icons/fi";
 import { FiAward, FiBook, FiUsers } from "react-icons/fi";
 import { motion } from "framer-motion";
+import { NavProps } from "@/app/data";
 
-export default function About() {
+export default function About({ id }: NavProps) {
   return (
-    <section
-      id="about"
-      className="py-20 bg-gradient-to-b from-black to-gray-900"
-    >
+    <section id={id} className="py-20 bg-gradient-to-b from-black to-gray-900">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

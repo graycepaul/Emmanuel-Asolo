@@ -1,9 +1,9 @@
 "use client";
-import { publications } from "@/app/data";
+import { NavProps, publications } from "@/app/data";
 import { motion } from "framer-motion";
 import { FiExternalLink, FiFileText } from "react-icons/fi";
 
-export default function Publications() {
+export default function Publications({ id }: NavProps) {
   const handlePublicationClick = (title: string) => {
     const searchQuery = encodeURIComponent(title);
     window.open(
@@ -14,7 +14,7 @@ export default function Publications() {
   };
 
   return (
-    <section id="publications" className="py-20 bg-slate-800">
+    <section id={id} className="py-20 bg-slate-800">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -1,5 +1,9 @@
 import { FiUsers, FiCpu, FiDatabase, FiCode, FiBook } from "react-icons/fi";
 
+export interface NavProps {
+  id: string;
+}
+
 export const sections = [
   { id: "home", name: "Home" },
   { id: "about", name: "About" },

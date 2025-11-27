@@ -1,13 +1,10 @@
 "use client";
-import { experiences, getTypeColor } from "@/app/data";
+import { experiences, getTypeColor, NavProps } from "@/app/data";
 import { motion } from "framer-motion";
 
-export default function Experience() {
+export default function Experience({ id }: NavProps) {
   return (
-    <section
-      id="experience"
-      className="py-20 bg-linear-to-b from-gray-950 to-gray-900"
-    >
+    <section id={id} className="py-20 bg-linear-to-b from-gray-950 to-gray-900">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div

@@ -3,9 +3,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { FiExternalLink, FiGithub, FiAward } from "react-icons/fi";
 import { useState } from "react";
-import { allProjects } from "@/app/data";
+import { allProjects, NavProps } from "@/app/data";
 
-export default function Projects() {
+export default function Projects({ id }: NavProps) {
   const [showAll, setShowAll] = useState(false);
 
   const displayedProjects = showAll ? allProjects : allProjects.slice(0, 4);
@@ -16,7 +16,7 @@ export default function Projects() {
 
   return (
     <section
-      id="projects"
+      id={id}
       className="py-20 bg-linear-to-b from-black to-gray-900 relative overflow-hidden"
     >
       <div className="container mx-auto px-6 relative z-10">

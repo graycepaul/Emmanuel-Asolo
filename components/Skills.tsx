@@ -1,10 +1,10 @@
 "use client";
-import { skillCategories } from "@/app/data";
+import { NavProps, skillCategories } from "@/app/data";
 import { motion } from "framer-motion";
 
-export default function Skills() {
+export default function Skills({ id }: NavProps) {
   return (
-    <section id="skills" className="py-20 bg-black">
+    <section id={id} className="py-20 bg-black">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
