@@ -1,40 +1,9 @@
 "use client";
+import { publications } from "@/app/data";
 import { motion } from "framer-motion";
 import { FiExternalLink, FiFileText } from "react-icons/fi";
 
 export default function Publications() {
-  const publications = [
-    {
-      title:
-        "AI-Powered Decision Support Systems for Sustainable Agriculture Using AI-Chatbot Solution",
-      journal: "Journal of Development: Food, Energy, and Water Systems",
-      year: "2024",
-      type: "authored",
-    },
-    {
-      title:
-        "Enhancing Urban Surveillance with Fog Computing, Mobile Cloud, and Big Data Analytics in 5G Networks",
-      journal:
-        "International Journal of Emerging Multidisciplinary Technologies",
-      year: "2024",
-      type: "authored",
-    },
-    {
-      title:
-        "ChatGPT and the Future of Generative AI: Architecture, Limitations, and Advancements in Large Language Models",
-      journal: "American Journal of Business and Social Research",
-      year: "2025",
-      type: "co-authored",
-    },
-    {
-      title:
-        "Artificial Intelligence-Driven Fuzzy Logic Approach for Optimal Well Selection in Gas Lift Optimization",
-      journal: "Results in Engineering (ScienceDirect)",
-      year: "2025",
-      type: "co-authored",
-    },
-  ];
-
   const handlePublicationClick = (title: string) => {
     const searchQuery = encodeURIComponent(title);
     window.open(

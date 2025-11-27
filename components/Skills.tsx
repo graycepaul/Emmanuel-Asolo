@@ -1,46 +1,8 @@
 "use client";
+import { skillCategories } from "@/app/data";
 import { motion } from "framer-motion";
 
 export default function Skills() {
-  const skillCategories = [
-    {
-      category: "Technical & Analytic Tools",
-      skills: [
-        "Python",
-        "SQL",
-        "TensorFlow/PyTorch",
-        "Scikit-learn",
-        "Power BI / Tableau",
-        "Data Visualization",
-        "Critical Thinking",
-      ],
-    },
-    {
-      category: "AI & Automation Tools",
-      skills: [
-        "Jupyter Notebook",
-        "Hugging Face",
-        "Google Colab",
-        "OpenAI ChatGPT API",
-        "Streamlit",
-        "Power Automate",
-        "NumPy",
-      ],
-    },
-    {
-      category: "Programming & Systems",
-      skills: [
-        "Deep Learning",
-        "AI Speech Recognition",
-        "OpenCV",
-        "Kaggle",
-        "Vertex AI",
-        "Google AutoML",
-        "GitHub",
-      ],
-    },
-  ];
-
   return (
     <section id="skills" className="py-20 bg-black">
       <div className="container mx-auto px-6">

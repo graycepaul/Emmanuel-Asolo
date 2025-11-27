@@ -255,3 +255,72 @@ export const allProjects = [
     status: "Completed",
   },
 ];
+
+export const skillCategories = [
+  {
+    category: "Technical & Analytic Tools",
+    skills: [
+      "Python",
+      "SQL",
+      "TensorFlow/PyTorch",
+      "Scikit-learn",
+      "Power BI / Tableau",
+      "Data Visualization",
+      "Critical Thinking",
+    ],
+  },
+  {
+    category: "AI & Automation Tools",
+    skills: [
+      "Jupyter Notebook",
+      "Hugging Face",
+      "Google Colab",
+      "OpenAI ChatGPT API",
+      "Streamlit",
+      "Power Automate",
+      "NumPy",
+    ],
+  },
+  {
+    category: "Programming & Systems",
+    skills: [
+      "Deep Learning",
+      "AI Speech Recognition",
+      "OpenCV",
+      "Kaggle",
+      "Vertex AI",
+      "Google AutoML",
+      "GitHub",
+    ],
+  },
+];
+export const publications = [
+  {
+    title:
+      "AI-Powered Decision Support Systems for Sustainable Agriculture Using AI-Chatbot Solution",
+    journal: "Journal of Development: Food, Energy, and Water Systems",
+    year: "2024",
+    type: "authored",
+  },
+  {
+    title:
+      "Enhancing Urban Surveillance with Fog Computing, Mobile Cloud, and Big Data Analytics in 5G Networks",
+    journal: "International Journal of Emerging Multidisciplinary Technologies",
+    year: "2024",
+    type: "authored",
+  },
+  {
+    title:
+      "ChatGPT and the Future of Generative AI: Architecture, Limitations, and Advancements in Large Language Models",
+    journal: "American Journal of Business and Social Research",
+    year: "2025",
+    type: "co-authored",
+  },
+  {
+    title:
+      "Artificial Intelligence-Driven Fuzzy Logic Approach for Optimal Well Selection in Gas Lift Optimization",
+    journal: "Results in Engineering (ScienceDirect)",
+    year: "2025",
+    type: "co-authored",
+  },
+];
