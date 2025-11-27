@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FiCode, FiUser, FiCpu, FiChevronDown } from "react-icons/fi";
 
 interface HeroProps {
@@ -24,7 +25,7 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
   return (
     <section
       id={id}
-      className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-b from-black to-gray-950 pt-10 lg:pt-0"
+      className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-b from-[#0F141D] to-gray-950 pt-10 lg:pt-0 -mt-2 lg:-mt-12"
     >
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center ">
@@ -40,10 +41,10 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center space-x-2 mb-6"
+              className="inline-flex items-center space-x-2 mb-6 mt-4 lg:mt-0"
             >
               <div className="w-2 h-2 bg-[#BFA615] rounded-full animate-pulse"></div>
-              <span className="text-slate-300 text-sm font-medium tracking-wider">
+              <span className="text-slate-300 text-sm font-medium tracking-wider ">
                 AI RESEARCHER & DATA SCIENTIST
               </span>
             </motion.div>
@@ -163,14 +164,13 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
                   </div>
                 </div>
 
-                {/* Uncomment when you have the actual image */}
-                {/* <Image
+                <Image
                   src="/emmanuel-photo.jpg"
                   alt="Emmanuel Asolo"
                   fill
                   className="object-cover"
                   priority
-                /> */}
+                />
               </motion.div>
 
               {/* Minimal Text Overlay */}

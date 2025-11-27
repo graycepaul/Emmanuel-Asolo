@@ -30,7 +30,7 @@ export default function Navigation({
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80; // Account for fixed navbar height
+      const offset = 70; // Reduced offset for tighter spacing
       const elementPosition = element.offsetTop - offset;
       window.scrollTo({
         top: elementPosition,
@@ -61,13 +61,13 @@ export default function Navigation({
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        className={`fixed top-0 w-full z-50 transition-all duration-300  ${
           isScrolled
-            ? "bg-black/80 backdrop-blur-lg border-b border-gray-800/50"
-            : "bg-black backdrop-blur-lg"
+            ? "bg-transparent backdrop-blur-lg border-b border-gray-800/50"
+            : "bg-[#0F141D] backdrop-blur-none"
         }`}
       >
-        <div className="container mx-auto px-4 sm:px-6 py-3">
+        <div className="container mx-auto px-4 sm:px-6 py-5">
           <div className="flex justify-between items-center">
             {/* Social Links - Left Side */}
             <div className="flex space-x-2 sm:space-x-3">
@@ -162,8 +162,8 @@ export default function Navigation({
         </AnimatePresence>
       </nav>
 
-      {/* Spacer for fixed navbar */}
-      <div className="h-16 sm:h-20" />
+      {/* Reduced spacer for fixed navbar */}
+      <div className="h-14 sm:h-16" />
     </>
   );
 }
