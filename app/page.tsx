@@ -17,6 +17,7 @@ import Experience from "@/components/Experience";
 import Publications from "@/components/Publications";
 import Projects from "@/components/Projects";
 import Image from "next/image";
+import { sections } from "./data";
 
 export default function MLPortfolio() {
   const [activeSection, setActiveSection] = useState("home");
@@ -26,15 +27,6 @@ export default function MLPortfolio() {
     setTimeout(() => setIsLoading(false), 2000);
   }, []);
 
-  const sections = [
-    { id: "home", name: "Home" },
-    { id: "about", name: "About" },
-    { id: "skills", name: "Skills" },
-    { id: "experience", name: "Experience" },
-    { id: "projects", name: "Projects" },
-    { id: "publications", name: "Publications" },
-  ];
-
   if (isLoading) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
@@ -43,7 +35,7 @@ export default function MLPortfolio() {
           animate={{ scale: 1, opacity: 1 }}
           className="text-center"
         >
-          <div className="w-16 h-16 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-[#BFA615] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <motion.h2
             className="text-2xl font-bold text-white"
             initial={{ opacity: 0 }}
@@ -53,7 +45,7 @@ export default function MLPortfolio() {
             Emmanuel Asolo
           </motion.h2>
           <motion.p
-            className="text-yellow-600 mt-2"
+            className="text-[#BFA615] mt-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
@@ -66,9 +58,9 @@ export default function MLPortfolio() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen text-white">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-lg border-b border-gray-800">
+      <nav className="fixed top-0 w-full z-50 bg-transparent backdrop-blur-lg ">
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex space-x-4">
@@ -76,7 +68,7 @@ export default function MLPortfolio() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 href="https://linkedin.com/in/emmanuel-asolo-b197091b7"
-                className="p-2 rounded-lg bg-gray-800 hover:bg-yellow-600 transition-colors"
+                className="p-2 rounded-lg bg-gray-800 hover:bg-[#BFA615] transition-colors"
               >
                 <FiLinkedin className="w-5 h-5" />
               </motion.a>
@@ -84,7 +76,7 @@ export default function MLPortfolio() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 href="mailto:e.asolo-2023@hull.ac.uk"
-                className="p-2 rounded-lg bg-gray-800 hover:bg-yellow-600 transition-colors"
+                className="p-2 rounded-lg bg-gray-800 hover:bg-[#BFA615] transition-colors"
               >
                 <FiMail className="w-5 h-5" />
               </motion.a>
@@ -96,7 +88,7 @@ export default function MLPortfolio() {
                   onClick={() => setActiveSection(section.id)}
                   className={`transition-all duration-300 ${
                     activeSection === section.id
-                      ? "text-yellow-500 border-b-2 border-slate-300 "
+                      ? "text-[#BFA615] border-b-2 border-slate-300 "
                       : "text-slate-100 hover:text-slate-300"
                   }`}
                 >
@@ -111,12 +103,8 @@ export default function MLPortfolio() {
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center relative overflow-hidden bg-linear-to-b from-#0C0F17 to-gray-900 mt-20 lg:mt-0"
+        className="min-h-screen flex items-center relative overflow-hidden bg-linear-to-b from-black to-gray-950  pt-20 lg:pt-0"
       >
-        {/* Yellow Accent Elements */}
-        <div className="absolute top-1/4 -left-10 w-72 h-72 bg-yellow-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 -right-10 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl"></div>
-
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center mt-9 lg:mt-8">
             {/* Text Content - Left Side */}
@@ -133,7 +121,7 @@ export default function MLPortfolio() {
                 transition={{ delay: 0.2 }}
                 className="inline-flex items-center space-x-2 mb-6"
               >
-                <div className="w-2 h-2 bg-yellow-600 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-[#BFA615] rounded-full animate-pulse"></div>
                 <span className="text-slate-300 text-sm font-medium tracking-wider">
                   AI RESEARCHER & DATA SCIENTIST
                 </span>
@@ -152,7 +140,7 @@ export default function MLPortfolio() {
                 className="text-lg text-gray-300 mb-8 font-light tracking-wide"
               >
                 MSc Artificial Intelligence & Data Science
-                <span className="text-yellow-600 mx-2">•</span>
+                <span className="text-[#BFA615] mx-2">•</span>
                 University of Hull
               </motion.p>
 
@@ -161,7 +149,7 @@ export default function MLPortfolio() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="text-sm lg:text-md text-gray-400 mb-8 leading-relaxed max-w-lg border-l-4 border-yellow-400 pl-4"
+                className="text-sm lg:text-md text-gray-400 mb-8 leading-relaxed max-w-lg border-l-4 border-[#BFA615] pl-4"
               >
                 Research-driven AI specialist passionate about building ethical
                 and explainable AI systems. Currently advancing research in Deep
@@ -182,7 +170,7 @@ export default function MLPortfolio() {
                     boxShadow: "0 10px 30px -10px rgba(245, 158, 11, 0.3)",
                   }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-yellow-600 text-black rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+                  className="px-8 py-4 bg-[#BFA615] text-black rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
                   onClick={() => setActiveSection("projects")}
                 >
                   <FiCode className="w-5 h-5" />
@@ -196,7 +184,7 @@ export default function MLPortfolio() {
                     backgroundColor: "rgba(245, 158, 11, 0.1)",
                   }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 border-2 border-gray-600 text-white rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 hover:border-yellow-400"
+                  className="px-8 py-4 border-2 border-gray-600 text-white rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 hover:border-[#BFA615]"
                   onClick={() => setActiveSection("about")}
                 >
                   <FiUser className="w-5 h-5" />
@@ -217,7 +205,7 @@ export default function MLPortfolio() {
                   { number: "MSc", label: "AI & Data Science" },
                 ].map((stat, index) => (
                   <div key={stat.label} className="text-center">
-                    <div className="text-2xl font-bold text-yellow-600 mb-1">
+                    <div className="text-2xl font-bold text-[#BFA615] mb-1">
                       {stat.number}
                     </div>
                     <div className="text-xs text-gray-400 uppercase tracking-wider">
@@ -248,9 +236,6 @@ export default function MLPortfolio() {
                     className="object-cover"
                     priority
                   />
-
-                  {/* Subtle Accent Line */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600" />
                 </motion.div>
 
                 {/* Minimal Text Overlay */}
@@ -263,7 +248,7 @@ export default function MLPortfolio() {
                   <div className="text-white font-semibold">
                     MSc AI & Data Science
                   </div>
-                  <div className="text-yellow-400 text-xs">AI Research</div>
+                  <div className="text-[#BFA615] text-xs">AI Research</div>
                 </motion.div>
 
                 {/* Single Floating Element */}
@@ -271,7 +256,7 @@ export default function MLPortfolio() {
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.8 }}
-                  className="absolute -top-2 -right-2 bg-yellow-400 text-black rounded-full w-8 h-8 flex items-center justify-center shadow-lg"
+                  className="absolute -top-2 -right-2 bg-[#BFA615] text-black rounded-full w-8 h-8 flex items-center justify-center shadow-lg"
                 >
                   <FiCpu className="w-4 h-4" />
                 </motion.div>

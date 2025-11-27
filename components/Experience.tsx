@@ -1,152 +1,8 @@
 "use client";
+import { experiences, getTypeColor } from "@/app/data";
 import { motion } from "framer-motion";
-import {
-  FiUsers,
-  FiCpu,
-  FiDatabase,
-  FiCode,
-  FiBook,
-  FiAward,
-} from "react-icons/fi";
 
 export default function Experience() {
-  const experiences = [
-    {
-      role: "Postgraduate Taught Representative",
-      company: "Hull University Students' Union (HUSU)",
-      period: "October 2025 - Present",
-      description:
-        "Elected as the official representative for all postgraduate taught students across the University of Hull (Hull and London campuses). Working closely with academic and student services to enhance postgraduate learning, inclusion, and well-being.",
-      achievements: [
-        "Serve as the link between postgraduate students, faculty, and the Students' Union on academic matters",
-        "Represent postgraduate voices in university council and academic zone meetings",
-        "Lead student engagement initiatives and facilitate open communication between staff and students",
-        "Collaborate with course representatives across faculties to gather feedback and address concerns",
-        "Promote fair academic practices, diversity, and inclusion in postgraduate programs",
-        "Support postgraduate community development through events and academic-focused activities",
-      ],
-      type: "leadership",
-      icon: FiUsers,
-      industry: "Education & Leadership",
-    },
-    {
-      role: "Team Lead - System Operation",
-      company: "OfficeCare Limited",
-      period: "June 2025 - Present",
-      description:
-        "Leading the operations team in rolling out new ways to run and maintain machines. Focus on tech side, software setup, firmware, sensors, and basic hardware checks.",
-      achievements: [
-        "Balance IT duties with team leadership in operations",
-        "Handle general IT tasks, machines, devices, and daily cleaning operations",
-        "Oversee IT systems, devices, and daily tech tasks",
-        "Train crew to use simple diagnostics, follow clear routines, and keep clean logs",
-        "Ensure work safety, efficiency, and alignment with service targets",
-      ],
-      type: "tech",
-      icon: FiCpu,
-      industry: "PropTech",
-    },
-    {
-      role: "Data Analyst",
-      company: "Stechin Global Consult",
-      period: "December 2019 - April 2025",
-      description:
-        "Supported the migration of customer data from legacy systems across 12+ business areas to Salesforce, optimizing data accessibility and improving customer interactions.",
-      achievements: [
-        "Increased overall resource utilization by 20% through data optimization",
-        "Built comprehensive dashboards for inquiry, application, offer, and enrolment tracking",
-        "Implemented data quality checks and simple audit logs",
-        "Monitored company systems, servers, and networks with user support",
-        "Explored AI tools and open-source libraries for process improvement",
-      ],
-      type: "data",
-      icon: FiDatabase,
-      industry: "EdTech",
-    },
-    {
-      role: "Member Research Team",
-      company: "Osun State University",
-      period: "June 2018 - May 2019",
-      description:
-        "Research team member in the Department of Information and Communication Technology, contributing to academic research and laboratory operations.",
-      achievements: [
-        "Conducted experiments and simulations for research projects",
-        "Assisted in the supervision and monitoring of undergraduate students",
-        "Maintained and upgraded laboratory equipment and resources",
-        "Represented the Supervisor at research events, conferences, and workshops",
-      ],
-      type: "research",
-      icon: FiBook,
-      industry: "Academic Research",
-    },
-    {
-      role: "Full-stack Software Engineer (Intern)",
-      company: "BixBase Technology",
-      period: "May 2017 - Present",
-      description:
-        "Full-time internship focusing on web application development and software engineering practices.",
-      achievements: [
-        "Assisted in development and maintenance of web applications using HTML, CSS, JavaScript, and PHP",
-        "Participated in system testing, version control (Git), and documentation tasks",
-        "Collaborated on all stages of systems development lifecycle",
-        "Gained exposure to agile-style workflows through code reviews and team discussions",
-      ],
-      type: "development",
-      icon: FiCode,
-      industry: "Technology",
-    },
-    {
-      role: "Web Developer (Internship)",
-      company: "Eagles Institute of Technology",
-      period: "2017",
-      description:
-        "Web development internship focusing on modern web technologies and frameworks.",
-      achievements: [
-        "Wrote custom Components, Pipes, Filters, and Services for Angular 2+ and Vue.js applications",
-        "Integrated user-facing components with server-side RESTful/SOAP Web Services",
-        "Developed server-side applications using Spring (Boot, Data JPA) and Hibernate framework",
-        "Worked with SQL/NoSQL databases for SOA and Microservices applications",
-      ],
-      type: "development",
-      icon: FiCode,
-      industry: "Technology",
-    },
-  ];
-
-  const getIconColor = (type: string) => {
-    switch (type) {
-      case "leadership":
-        return "text-yellow-400";
-      case "tech":
-        return "text-blue-400";
-      case "data":
-        return "text-green-400";
-      case "research":
-        return "text-purple-400";
-      case "development":
-        return "text-cyan-400";
-      default:
-        return "text-gray-400";
-    }
-  };
-
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case "leadership":
-        return "bg-yellow-400/10 text-yellow-400 border-yellow-400/20";
-      case "tech":
-        return "bg-blue-400/10 text-blue-400 border-blue-400/20";
-      case "data":
-        return "bg-green-400/10 text-green-400 border-green-400/20";
-      case "research":
-        return "bg-purple-400/10 text-purple-400 border-purple-400/20";
-      case "development":
-        return "bg-cyan-400/10 text-cyan-400 border-cyan-400/20";
-      default:
-        return "bg-gray-400/10 text-gray-400 border-gray-400/20";
-    }
-  };
-
   return (
     <section
       id="experience"
@@ -160,20 +16,8 @@ export default function Experience() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center space-x-2 mb-4"
-          >
-            <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-            <span className="text-yellow-400 text-sm font-medium tracking-wider">
-              CAREER JOURNEY
-            </span>
-          </motion.div>
-
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Professional <span className="text-yellow-400">Experience</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-2 text-white">
+            Professional Experience
           </h2>
 
           <motion.p
@@ -187,7 +31,7 @@ export default function Experience() {
         </motion.div>
 
         {/* Timeline */}
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto ">
           {/* Timeline Line */}
           <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-800/50 hidden lg:block"></div>
 

@@ -3,151 +3,22 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { FiExternalLink, FiGithub, FiAward } from "react-icons/fi";
 import { useState } from "react";
+import { allProjects } from "@/app/data";
 
 export default function Projects() {
   const [showAll, setShowAll] = useState(false);
 
-  const allProjects = [
-    {
-      title: "HealthTech Hackathon 2025 Finalist",
-      description:
-        "Mission: Brain Global Neurosurgery with Brainlabs and Harvard University. Developed AI solutions for global neurosurgery challenges.",
-      category: "HealthTech",
-      tech: ["AI", "Medical Imaging", "Neuroscience", "Python"],
-      status: "Finalist",
-      featured: true,
-    },
-    {
-      title: "Stroke Risk Prediction System",
-      description:
-        "Predicting stroke risk using Logistic Regression and Random Forest algorithms with 94% accuracy on clinical datasets.",
-      category: "Healthcare AI",
-      tech: ["Machine Learning", "Python", "Scikit-learn", "Pandas"],
-      status: "Completed",
-      featured: true,
-    },
-    {
-      title: "Fake News Detection Engine",
-      description:
-        "Advanced content verification system using Python and Logistic Regression for real-time fake news classification.",
-      category: "NLP",
-      tech: ["Python", "NLP", "Logistic Regression", "Transformers"],
-      status: "Completed",
-    },
-    {
-      title: "Handwritten Digit Recognition",
-      description:
-        "CNN Model with advanced Data Augmentation techniques for high-accuracy digit classification on MNIST dataset.",
-      category: "Computer Vision",
-      tech: ["CNN", "TensorFlow", "Data Augmentation", "Keras"],
-      status: "Completed",
-    },
-    {
-      title: "Life Expectancy Predictor",
-      description:
-        "ML model predicting life expectancy from GDP and mortality rates using WHO 2015 dataset with comprehensive feature analysis.",
-      category: "Data Science",
-      tech: ["Python", "Machine Learning", "WHO Data", "Matplotlib"],
-      status: "Completed",
-    },
-    {
-      title: "UK Traffic Accident Analysis",
-      description:
-        "Comprehensive analysis using K-Means and Gaussian Mixture Models on UK traffic accidents dataset with clustering insights.",
-      category: "Data Analytics",
-      tech: ["Clustering", "Python", "Data Analysis", "Scikit-learn"],
-      status: "Completed",
-    },
-    {
-      title: "AI-Powered Agriculture Chatbot",
-      description:
-        "Decision support system for sustainable agriculture using AI chatbot solution for farmers and agricultural experts.",
-      category: "AI Chatbot",
-      tech: ["NLP", "Python", "Transformers", "Agriculture"],
-      status: "Research",
-    },
-    {
-      title: "Urban Surveillance System",
-      description:
-        "Fog computing and mobile cloud integration with big data analytics for 5G-enabled urban surveillance networks.",
-      category: "IoT & Big Data",
-      tech: ["Fog Computing", "5G", "Big Data", "Cloud"],
-      status: "Research",
-    },
-    {
-      title: "UK Food & Drink Spending Analysis",
-      description:
-        "Used Matplotlib to analyze, compare, and visualize UK food & drink spending (1997–2022); projected 2024 values.",
-      category: "Data Visualization",
-      tech: ["Python", "Matplotlib", "Pandas", "Data Analysis"],
-      status: "Completed",
-    },
-    {
-      title: "Computer Vision Object Recognition",
-      description:
-        "Created a Computer Vision Demo with Teachable Machine for live classification and object recognition.",
-      category: "Computer Vision",
-      tech: [
-        "Teachable Machine",
-        "Computer Vision",
-        "JavaScript",
-        "TensorFlow.js",
-      ],
-      status: "Completed",
-    },
-    {
-      title: "MCU Movies Database",
-      description:
-        "Built and queried an SQLite database for MCU movies with complex queries and data management.",
-      category: "Database",
-      tech: ["SQLite", "Python", "Database Design", "SQL"],
-      status: "Completed",
-    },
-    {
-      title: "Hybrid Deep Learning for Fake News Detection",
-      description:
-        "Case Study: Hybrid Deep Learning FastText and Explainable AI for Fake News Detection using CNN LSTM.",
-      category: "Deep Learning",
-      tech: ["FastText", "CNN", "LSTM", "Explainable AI"],
-      status: "Research",
-    },
-    {
-      title: "Transaction Data Mining",
-      description:
-        "Hands-on experience in transaction data mining and itemset discovery; implemented Apriori pipelines end-to-end.",
-      category: "Data Mining",
-      tech: [
-        "Apriori Algorithm",
-        "Data Mining",
-        "Python",
-        "Market Basket Analysis",
-      ],
-      status: "Completed",
-    },
-    {
-      title: "Titanic Survival Prediction",
-      description:
-        "Predicted Titanic survival from passenger features using Python, with comprehensive dataset analysis including imputation and visualization.",
-      category: "Machine Learning",
-      tech: ["Python", "Classification", "Data Imputation", "Visualization"],
-      status: "Completed",
-    },
-  ];
-
-  const displayedProjects = showAll ? allProjects : allProjects.slice(0, 6);
+  const displayedProjects = showAll ? allProjects : allProjects.slice(0, 4);
 
   const toggleShowAll = () => {
     setShowAll(!showAll);
   };
 
   return (
-    <section id="projects" className="py-20 bg-gray-900">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-yellow-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-yellow-500/5 rounded-full blur-3xl"></div>
-      </div>
-
+    <section
+      id="projects"
+      className="py-20 bg-linear-to-b from-black to-gray-900 relative overflow-hidden"
+    >
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -172,7 +43,7 @@ export default function Projects() {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
           <AnimatePresence>
             {displayedProjects.map((project, index) => (
               <motion.div
@@ -185,9 +56,9 @@ export default function Projects() {
                 className="group relative"
               >
                 {/* Project Card */}
-                <div className="relative bg-gray-800 backdrop-blur-sm border border-gray-800/60 rounded-xl p-5 transition-all duration-500 group-hover:border-gray-700 group-hover:bg-gray-900 h-full flex flex-col overflow-hidden">
+                <div className="relative bg-gray-900 backdrop-blur-sm border border-gray-800/60 rounded-xl p-5 transition-all duration-500 group-hover:border-gray-700 group-hover:bg-gray-900 h-full flex flex-col overflow-hidden">
                   {/* Subtle Accent Bar */}
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400/80 via-yellow-500/60 to-yellow-400/80 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400/80 via-yellow-500/60 to-yellow-400/80 transform scale-x-100 group-hover:bg-white transition-transform duration-500" />
 
                   {/* Header Section */}
                   <div className="flex justify-between items-start mb-4">

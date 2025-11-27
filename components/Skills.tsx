@@ -1,88 +1,89 @@
 "use client";
 import { motion } from "framer-motion";
-import { FiBarChart2, FiCode, FiCpu } from "react-icons/fi";
 
 export default function Skills() {
+  const skillCategories = [
+    {
+      category: "Technical & Analytic Tools",
+      skills: [
+        "Python",
+        "SQL",
+        "TensorFlow/PyTorch",
+        "Scikit-learn",
+        "Power BI / Tableau",
+        "Data Visualization",
+        "Critical Thinking",
+      ],
+    },
+    {
+      category: "AI & Automation Tools",
+      skills: [
+        "Jupyter Notebook",
+        "Hugging Face",
+        "Google Colab",
+        "OpenAI ChatGPT API",
+        "Streamlit",
+        "Power Automate",
+        "NumPy",
+      ],
+    },
+    {
+      category: "Programming & Systems",
+      skills: [
+        "Deep Learning",
+        "AI Speech Recognition",
+        "OpenCV",
+        "Kaggle",
+        "Vertex AI",
+        "Google AutoML",
+        "GitHub",
+      ],
+    },
+  ];
+
   return (
     <section id="skills" className="py-20 bg-black">
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold mb-4">
-            <span className="bg-clip-text text-white">Technical Expertise</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Technical Skills
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto"></div>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Tools and technologies I work with
+          </p>
         </motion.div>
 
+        {/* Minimal 3-column layout */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {[
-            {
-              category: "Technical & Analytic Tools",
-              skills: [
-                "Python",
-                "SQL",
-                "TensorFlow/PyTorch",
-                "Scikit-learn",
-                "Power BI/Tableau",
-                "Data Visualization",
-              ],
-              icon: <FiBarChart2 className="w-6 h-6" />,
-              color: "yellow",
-            },
-            {
-              category: "AI & Automation Tools",
-              skills: [
-                "Jupyter Notebook",
-                "Hugging Face",
-                "Google Colab",
-                "OpenAI ChatGPT API",
-                "Streamlit",
-                "Power Automate",
-              ],
-              icon: <FiCpu className="w-6 h-6" />,
-              color: "yellow",
-            },
-            {
-              category: "Programming & Systems",
-              skills: [
-                "Deep Learning",
-                "AI Speech Recognition",
-                "OpenCV",
-                "Kaggle",
-                "Vertex AI",
-                "GitHub",
-              ],
-              icon: <FiCode className="w-6 h-6" />,
-              color: "yellow",
-            },
-          ].map((group, index) => (
+          {skillCategories.map((category, index) => (
             <motion.div
-              key={group.category}
-              initial={{ opacity: 0, y: 50 }}
+              key={category.category}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-xl p-6 hover:border-yellow-400/50 transition-all duration-300"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div
-                className={`flex items-center space-x-3 mb-6 text-${group.color}-400`}
-              >
-                {group.icon}
-                <h3 className="text-xl font-bold text-gray-200">
-                  {group.category}
+              <div className="text-center mb-4">
+                <h3 className="text-white font-semibold text-lg mb-4">
+                  {category.category}
                 </h3>
               </div>
-              <div className="space-y-3">
-                {group.skills.map((skill) => (
-                  <div key={skill} className="flex items-center space-x-3">
-                    <div
-                      className={`w-2 h-2 bg-${group.color}-400 rounded-full`}
-                    ></div>
-                    <span className="text-gray-400">{skill}</span>
-                  </div>
+
+              <div className="space-y-2">
+                {category.skills.map((skill, skillIndex) => (
+                  <motion.div
+                    key={skill}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: skillIndex * 0.03 }}
+                    className="text-gray-400 text-sm text-center hover:text-yellow-400 transition-colors duration-200 py-1"
+                  >
+                    {skill}
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
