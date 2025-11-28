@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
@@ -11,10 +10,12 @@ import Projects from "@/components/Projects";
 import { sections } from "./data";
 import Navigation from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function MLPortfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [isLoading, setIsLoading] = useState(true);
+  const { theme } = useTheme();
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 2000);
@@ -23,7 +24,7 @@ export default function MLPortfolio() {
   // Update active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100; // Offset for better detection
+      const scrollPosition = window.scrollY + 100;
 
       sections.forEach((section) => {
         const element = document.getElementById(section.id);
@@ -38,32 +39,19 @@ export default function MLPortfolio() {
       });
     };
 
-    // Add scroll event listener
     window.addEventListener("scroll", handleScroll, { passive: true });
-
-    // Initial check on mount
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [sections]);
 
-  // Handle smooth scroll for manual navigation
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80; // Account for fixed navbar height
-      const elementPosition = element.offsetTop - offset;
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
-      });
-      setActiveSection(sectionId);
-    }
-  };
-
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div
+        className={`min-h-screen flex items-center justify-center transition-colors duration-300 ${
+          theme === "dark" ? "bg-black" : "bg-white"
+        }`}
+      >
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -71,7 +59,9 @@ export default function MLPortfolio() {
         >
           <div className="w-16 h-16 border-4 border-[#BFA615] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <motion.h2
-            className="text-2xl font-bold text-white"
+            className={`text-2xl font-bold transition-colors duration-300 ${
+              theme === "dark" ? "text-white" : "text-gray-800"
+            }`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -92,7 +82,11 @@ export default function MLPortfolio() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        theme === "dark" ? "bg-black text-white" : "bg-white text-gray-800"
+      }`}
+    >
       <Navigation
         sections={sections}
         activeSection={activeSection}

@@ -8,6 +8,7 @@ import {
   FiChevronRight,
 } from "react-icons/fi";
 import { publications } from "@/app/data";
+import { useTheme } from "@/context/ThemeContext";
 
 interface PublicationsProps {
   id: string;
@@ -16,6 +17,7 @@ interface PublicationsProps {
 export default function Publications({ id }: PublicationsProps) {
   const [showAll, setShowAll] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const { theme } = useTheme();
 
   const initialPublications = publications.slice(0, 4);
   const additionalPublications = publications.slice(4);
@@ -46,7 +48,12 @@ export default function Publications({ id }: PublicationsProps) {
   };
 
   return (
-    <section id={id} className="py-20 bg-slate-800">
+    <section
+      id={id}
+      className={`py-20 transition-colors duration-300 ${
+        theme === "dark" ? "bg-slate-800" : "bg-gray-100"
+      }`}
+    >
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -54,10 +61,18 @@ export default function Publications({ id }: PublicationsProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2
+            className={`text-3xl md:text-4xl font-bold mb-4 transition-colors duration-300 ${
+              theme === "dark" ? "text-white" : "text-gray-800"
+            }`}
+          >
             Research Publications
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p
+            className={`max-w-2xl mx-auto transition-colors duration-300 ${
+              theme === "dark" ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
             Academic contributions to AI and Data Science research
           </p>
         </motion.div>
@@ -74,7 +89,11 @@ export default function Publications({ id }: PublicationsProps) {
             >
               <div
                 onClick={() => handlePublicationClick(pub.title)}
-                className="bg-gray-900/30 border border-gray-800/50 rounded-lg p-5 cursor-pointer hover:border-yellow-400/30 transition-all duration-300 h-full flex flex-col"
+                className={`border rounded-lg p-5 cursor-pointer hover:border-yellow-400/30 transition-all duration-300 h-full flex flex-col transition-colors duration-300 ${
+                  theme === "dark"
+                    ? "bg-gray-900/30 border-gray-800/50"
+                    : "bg-white/80 border-gray-300"
+                }`}
               >
                 {/* Year and Type */}
                 <div className="flex justify-between items-center mb-3">
@@ -93,12 +112,20 @@ export default function Publications({ id }: PublicationsProps) {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-white text-sm font-medium mb-3 line-clamp-3 group-hover:text-yellow-400 transition-colors duration-300">
+                <h3
+                  className={`text-sm font-medium mb-3 line-clamp-3 group-hover:text-yellow-400 transition-colors duration-300 ${
+                    theme === "dark" ? "text-white" : "text-gray-800"
+                  }`}
+                >
                   {pub.title}
                 </h3>
 
                 {/* Journal */}
-                <div className="flex items-center gap-2 text-gray-400 text-xs mt-auto">
+                <div
+                  className={`flex items-center gap-2 text-xs mt-auto transition-colors duration-300 ${
+                    theme === "dark" ? "text-gray-400" : "text-gray-600"
+                  }`}
+                >
                   <FiFileText className="w-3 h-3 text-yellow-400/70" />
                   <span className="line-clamp-1">{pub.journal}</span>
                 </div>
@@ -142,19 +169,27 @@ export default function Publications({ id }: PublicationsProps) {
               className="mt-8"
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-white text-lg font-semibold">
+                <h3
+                  className={`text-lg font-semibold transition-colors duration-300 ${
+                    theme === "dark" ? "text-white" : "text-gray-800"
+                  }`}
+                >
                   Additional Publications
                 </h3>
                 <div className="flex space-x-2">
                   <button
                     onClick={scrollLeft}
-                    className="p-2 rounded-lg bg-gray-800 hover:bg-yellow-400 hover:text-black transition-all duration-300"
+                    className={`p-2 rounded-lg hover:bg-yellow-400 hover:text-black transition-all duration-300 transition-colors duration-300 ${
+                      theme === "dark" ? "bg-gray-800" : "bg-gray-300"
+                    }`}
                   >
                     <FiChevronLeft className="w-4 h-4" />
                   </button>
                   <button
                     onClick={scrollRight}
-                    className="p-2 rounded-lg bg-gray-800 hover:bg-yellow-400 hover:text-black transition-all duration-300"
+                    className={`p-2 rounded-lg hover:bg-yellow-400 hover:text-black transition-all duration-300 transition-colors duration-300 ${
+                      theme === "dark" ? "bg-gray-800" : "bg-gray-300"
+                    }`}
                   >
                     <FiChevronRight className="w-4 h-4" />
                   </button>
@@ -177,7 +212,11 @@ export default function Publications({ id }: PublicationsProps) {
                     >
                       <div
                         onClick={() => handlePublicationClick(pub.title)}
-                        className="bg-gray-900/30 border border-gray-800/50 rounded-lg p-5 cursor-pointer hover:border-yellow-400/30 transition-all duration-300 h-full flex flex-col group"
+                        className={`border rounded-lg p-5 cursor-pointer hover:border-yellow-400/30 transition-all duration-300 h-full flex flex-col group transition-colors duration-300 ${
+                          theme === "dark"
+                            ? "bg-gray-900/30 border-gray-800/50"
+                            : "bg-white/80 border-gray-300"
+                        }`}
                       >
                         {/* Year and Type */}
                         <div className="flex justify-between items-center mb-3">
@@ -196,12 +235,20 @@ export default function Publications({ id }: PublicationsProps) {
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-white text-sm font-medium mb-3 line-clamp-3 group-hover:text-yellow-400 transition-colors duration-300">
+                        <h3
+                          className={`text-sm font-medium mb-3 line-clamp-3 group-hover:text-yellow-400 transition-colors duration-300 ${
+                            theme === "dark" ? "text-white" : "text-gray-800"
+                          }`}
+                        >
                           {pub.title}
                         </h3>
 
                         {/* Journal */}
-                        <div className="flex items-center gap-2 text-gray-400 text-xs mt-auto">
+                        <div
+                          className={`flex items-center gap-2 text-xs mt-auto transition-colors duration-300 ${
+                            theme === "dark" ? "text-gray-400" : "text-gray-600"
+                          }`}
+                        >
                           <FiFileText className="w-3 h-3 text-yellow-400/70" />
                           <span className="line-clamp-2">{pub.journal}</span>
                         </div>
@@ -216,15 +263,31 @@ export default function Publications({ id }: PublicationsProps) {
                 </div>
 
                 {/* Scroll gradient indicators */}
-                <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none rounded-l-lg" />
-                <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none rounded-r-lg" />
+                <div
+                  className={`absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r pointer-events-none rounded-l-lg transition-colors duration-300 ${
+                    theme === "dark"
+                      ? "from-slate-950 to-transparent"
+                      : "from-gray-100 to-transparent"
+                  }`}
+                />
+                <div
+                  className={`absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l pointer-events-none rounded-r-lg transition-colors duration-300 ${
+                    theme === "dark"
+                      ? "from-slate-950 to-transparent"
+                      : "from-gray-100 to-transparent"
+                  }`}
+                />
               </div>
 
               {/* Hide All Publications Button */}
               <div className="text-center mt-6">
                 <button
                   onClick={() => setShowAll(false)}
-                  className="text-gray-400 hover:text-white text-sm transition-colors duration-300"
+                  className={`text-sm transition-colors duration-300 ${
+                    theme === "dark"
+                      ? "text-gray-400 hover:text-white"
+                      : "text-gray-600 hover:text-gray-800"
+                  }`}
                 >
                   Hide Additional Publications
                 </button>
@@ -240,7 +303,11 @@ export default function Publications({ id }: PublicationsProps) {
           transition={{ delay: 0.4 }}
           className="text-center mt-12"
         >
-          <div className="inline-flex items-center space-x-6 text-sm text-gray-400">
+          <div
+            className={`inline-flex items-center space-x-6 text-sm transition-colors duration-300 ${
+              theme === "dark" ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
             <span>
               Total Publications:{" "}
               <strong className="text-yellow-400">{publications.length}</strong>

@@ -4,9 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiExternalLink, FiGithub, FiAward } from "react-icons/fi";
 import { useState } from "react";
 import { allProjects, NavProps } from "@/app/data";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function Projects({ id }: NavProps) {
   const [showAll, setShowAll] = useState(false);
+  const { theme } = useTheme();
 
   const displayedProjects = showAll ? allProjects : allProjects.slice(0, 4);
 
@@ -17,7 +19,11 @@ export default function Projects({ id }: NavProps) {
   return (
     <section
       id={id}
-      className="py-20 bg-linear-to-b from-black to-gray-900 relative overflow-hidden"
+      className={`py-20 relative overflow-hidden transition-colors duration-300 ${
+        theme === "dark"
+          ? "bg-gradient-to-b from-black to-gray-900"
+          : "bg-gradient-to-b from-gray-200 to-white"
+      }`}
     >
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
@@ -27,7 +33,11 @@ export default function Projects({ id }: NavProps) {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+          <h2
+            className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-300 ${
+              theme === "dark" ? "text-white" : "text-gray-800"
+            }`}
+          >
             Featured Projects
           </h2>
 
@@ -35,10 +45,12 @@ export default function Projects({ id }: NavProps) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed"
+            className={`text-lg max-w-2xl mx-auto leading-relaxed transition-colors duration-300 ${
+              theme === "dark" ? "text-gray-400" : "text-gray-600"
+            }`}
           >
             Explore my work in AI, Data Science, and Machine Learning.
-            {!showAll && " Showing 6 of " + allProjects.length + " projects."}
+            {!showAll && " Showing 4 of " + allProjects.length + " projects."}
           </motion.p>
         </motion.div>
 
@@ -56,19 +68,27 @@ export default function Projects({ id }: NavProps) {
                 className="group relative"
               >
                 {/* Project Card */}
-                <div className="relative bg-gray-900 backdrop-blur-sm border border-gray-800/60 rounded-xl p-5 transition-all duration-500 group-hover:border-gray-700 group-hover:bg-gray-900 h-full flex flex-col overflow-hidden">
+                <div
+                  className={`relative backdrop-blur-sm border rounded-xl p-5 transition-color duration-500  h-full flex flex-col overflow-hidden transition-colors duration-300 ${
+                    theme === "dark"
+                      ? "bg-gray-900 border-gray-800/60 group-hover:border-gray-700"
+                      : "bg-white border-gray-300 group-hover:border-gray-200"
+                  }`}
+                >
                   {/* Subtle Accent Bar */}
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400/80 via-yellow-500/60 to-yellow-400/80 transform scale-x-100 group-hover:bg-white transition-transform duration-500" />
 
                   {/* Header Section */}
                   <div className="flex justify-between items-start mb-4">
                     <span
-                      className={`text-xs font-medium px-2.5 py-1 rounded-full ${
+                      className={`text-xs font-medium px-2.5 py-1 rounded-full border transition-colors duration-300 ${
                         project.status === "Finalist"
-                          ? "bg-yellow-400/10 text-yellow-300 border border-yellow-400/20"
+                          ? "bg-yellow-400/10 text-yellow-300 border-yellow-400/20"
                           : project.status === "Research"
-                          ? "bg-blue-400/10 text-blue-300 border border-blue-400/20"
-                          : "bg-gray-400/10 text-gray-300 border border-gray-400/20"
+                          ? "bg-blue-400/10 text-blue-300 border-blue-400/20"
+                          : theme === "dark"
+                          ? "bg-gray-400/10 text-gray-300 border-gray-400/20"
+                          : "bg-gray-400/10 text-gray-600 border-gray-400/20"
                       }`}
                     >
                       {project.status}
@@ -83,11 +103,19 @@ export default function Projects({ id }: NavProps) {
 
                   {/* Project Content */}
                   <div className="flex-1 mb-4">
-                    <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-yellow-400/90 transition-colors duration-300 leading-tight">
+                    <h3
+                      className={`text-lg font-semibold mb-3 group-hover:text-yellow-400/90 transition-colors duration-300 leading-tight ${
+                        theme === "dark" ? "text-white" : "text-gray-800"
+                      }`}
+                    >
                       {project.title}
                     </h3>
 
-                    <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
+                    <p
+                      className={`text-sm leading-relaxed line-clamp-3 transition-colors duration-300 ${
+                        theme === "dark" ? "text-gray-400" : "text-gray-600"
+                      }`}
+                    >
                       {project.description}
                     </p>
                   </div>
@@ -98,13 +126,23 @@ export default function Projects({ id }: NavProps) {
                       {project.tech.slice(0, 4).map((tech) => (
                         <span
                           key={tech}
-                          className="text-xs px-2.5 py-1 bg-gray-800/40 text-gray-400 rounded-md border border-gray-700/30 group-hover:border-gray-600/50 transition-colors duration-300"
+                          className={`text-xs px-2.5 py-1 rounded-md border transition-colors duration-300 ${
+                            theme === "dark"
+                              ? "bg-gray-800/40 text-gray-400 border-gray-700/30"
+                              : "bg-gray-100 text-gray-600 border-gray-300"
+                          }`}
                         >
                           {tech}
                         </span>
                       ))}
                       {project.tech.length > 4 && (
-                        <span className="text-xs px-2.5 py-1 bg-gray-800/20 text-gray-500 rounded-md">
+                        <span
+                          className={`text-xs px-2.5 py-1 rounded-md transition-colors duration-300 ${
+                            theme === "dark"
+                              ? "bg-gray-800/20 text-gray-500"
+                              : "bg-gray-100 text-gray-500"
+                          }`}
+                        >
                           +{project.tech.length - 4}
                         </span>
                       )}
@@ -112,12 +150,24 @@ export default function Projects({ id }: NavProps) {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex space-x-2 pt-3 border-t border-gray-800/40">
-                    <button className="flex-1 bg-gray-800/50 text-gray-300 py-2 px-3 rounded-lg text-sm hover:bg-gray-700/50 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2 border border-gray-700/30">
+                  <div className="flex space-x-2 pt-3 transition-colors duration-300">
+                    <button
+                      className={`flex-1 py-2 px-3 rounded-lg text-sm hover:bg-gray-700/50 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2 border transition-colors duration-300 ${
+                        theme === "dark"
+                          ? "bg-gray-800/50 text-gray-300 border-gray-700/30"
+                          : "bg-gray-100 text-gray-600 border-gray-300"
+                      }`}
+                    >
                       <FiExternalLink className="w-3.5 h-3.5" />
                       <span>Details</span>
                     </button>
-                    <button className="p-2 bg-gray-800/50 text-gray-400 rounded-lg hover:bg-gray-700/50 hover:text-white transition-all duration-300 border border-gray-700/30">
+                    <button
+                      className={`p-2 rounded-lg hover:bg-gray-700/50 hover:text-white transition-all duration-300 border transition-colors duration-300 ${
+                        theme === "dark"
+                          ? "bg-gray-800/50 text-gray-400 border-gray-700/30"
+                          : "bg-gray-100 text-gray-600 border-gray-300"
+                      }`}
+                    >
                       <FiGithub className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -160,9 +210,11 @@ export default function Projects({ id }: NavProps) {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-gray-500 text-sm mt-4"
+              className={`text-sm mt-4 transition-colors duration-300 ${
+                theme === "dark" ? "text-gray-500" : "text-gray-600"
+              }`}
             >
-              Showing 6 of {allProjects.length} projects
+              Showing 4 of {allProjects.length} projects
             </motion.p>
           )}
         </motion.div>

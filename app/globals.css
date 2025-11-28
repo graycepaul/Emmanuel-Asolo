@@ -1,29 +1,49 @@
 @import "tailwindcss";
 
-
 :root {
-  --foreground-rgb:     --background-start-rgb: rgba(22, 21, 21, 0.994);
-;
-
+  /* Light theme */
+  --color-background: #9DA5B2;
+  --color-foreground: #1f2937;
+  --color-navbar: rgba(255, 255, 255, 0.097);
+  --color-card: rgba(249, 250, 251, 0.8);
+  --color-border: #e5e7eb;
+  --color-muted: #6b7280;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: rgba(22, 21, 21, 0.994);
-    --background-end-rgb:     --background-start-rgb: rgba(22, 21, 21, 0.994);
-;
-  }
+[data-theme="dark"] {
+  /* Dark theme */
+  --color-background: #000000;
+  --color-foreground: #f3f4f6;
+  --color-navbar: rgba(15, 20, 29, 0.9);
+  --color-card: rgba(31, 41, 55, 0.8);
+  --color-border: #374151;
+  --color-muted: #9ca3af;
 }
 
+/* Apply the CSS variables */
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @layer utilities {
@@ -41,25 +61,4 @@ body {
   .ai-gradient {
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   }
-}
-
-/* Custom animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-.floating {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
 }

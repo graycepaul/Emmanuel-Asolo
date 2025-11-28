@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FiCode, FiUser, FiCpu, FiChevronDown } from "react-icons/fi";
+import { useTheme } from "@/context/ThemeContext";
 
 interface HeroProps {
   id: string;
@@ -9,6 +10,8 @@ interface HeroProps {
 }
 
 export default function Hero({ id, setActiveSection }: HeroProps) {
+  const { theme } = useTheme();
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -25,16 +28,22 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
   return (
     <section
       id={id}
-      className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-b from-[#0F141D] to-gray-950 pt-10 lg:pt-0 -mt-2 lg:-mt-12"
+      className={`min-h-screen flex items-center relative overflow-hidden pt-10 lg:pt-0 -mt-2 lg:-mt-12 transition-colors duration-300 ${
+        theme === "dark"
+          ? "bg-gradient-to-b from-[#0F141D] to-gray-950"
+          : "bg-gradient-to-b from-gray-300 to-white"
+      }`}
     >
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center ">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text Content - Left Side */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-white"
+            className={`transition-colors duration-300 ${
+              theme === "dark" ? "text-white" : "text-gray-800"
+            }`}
           >
             {/* Welcome Badge */}
             <motion.div
@@ -44,13 +53,21 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
               className="inline-flex items-center space-x-2 mb-6 mt-4 lg:mt-0"
             >
               <div className="w-2 h-2 bg-[#BFA615] rounded-full animate-pulse"></div>
-              <span className="text-slate-300 text-sm font-medium tracking-wider ">
+              <span
+                className={`text-sm font-medium tracking-wider transition-colors duration-300 ${
+                  theme === "dark" ? "text-slate-300" : "text-gray-600"
+                }`}
+              >
                 AI RESEARCHER & DATA SCIENTIST
               </span>
             </motion.div>
 
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1
+              className={`text-5xl md:text-6xl font-bold mb-6 leading-tight transition-colors duration-300 ${
+                theme === "dark" ? "text-white" : "text-gray-800"
+              }`}
+            >
               Emmanuel Asolo
             </h1>
 
@@ -59,7 +76,9 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-lg text-gray-300 mb-8 font-light tracking-wide"
+              className={`text-lg mb-8 font-light tracking-wide transition-colors duration-300 ${
+                theme === "dark" ? "text-gray-300" : "text-gray-600"
+              }`}
             >
               MSc Artificial Intelligence & Data Science
               <span className="text-[#BFA615] mx-2">•</span>
@@ -71,7 +90,9 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="text-sm lg:text-md text-gray-400 mb-8 leading-relaxed max-w-lg border-l-4 border-[#BFA615] pl-4"
+              className={`text-sm lg:text-md mb-8 leading-relaxed max-w-lg border-l-4 border-[#BFA615] pl-4 transition-colors duration-300 ${
+                theme === "dark" ? "text-gray-400" : "text-gray-600"
+              }`}
             >
               Research-driven AI specialist passionate about building ethical
               and explainable AI systems. Currently advancing research in Deep
@@ -92,7 +113,7 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
                   boxShadow: "0 10px 30px -10px rgba(245, 158, 11, 0.3)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-[#BFA615] text-black rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+                className="px-8 py-4 bg-yellow-400 text-black rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
                 onClick={() => scrollToSection("projects")}
               >
                 <FiCode className="w-5 h-5" />
@@ -106,7 +127,11 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
                   backgroundColor: "rgba(245, 158, 11, 0.1)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-gray-600 text-white rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 hover:border-[#BFA615]"
+                className={`px-8 py-4 border-2 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 hover:border-[#BFA615] ${
+                  theme === "dark"
+                    ? "border-gray-600 text-white"
+                    : "border-gray-400 text-gray-800"
+                }`}
                 onClick={() => scrollToSection("about")}
               >
                 <FiUser className="w-5 h-5" />
@@ -130,7 +155,11 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
                   <div className="text-2xl font-bold text-[#BFA615] mb-1">
                     {stat.number}
                   </div>
-                  <div className="text-xs text-gray-400 uppercase tracking-wider">
+                  <div
+                    className={`text-xs uppercase tracking-wider transition-colors duration-300 ${
+                      theme === "dark" ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
                     {stat.label}
                   </div>
                 </div>
@@ -149,16 +178,34 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
               {/* Ultra Clean Design */}
               <motion.div
                 whileHover={{ scale: 1.005 }}
-                className="relative aspect-[3/4] rounded-lg overflow-hidden bg-gray-900 border border-gray-800 shadow-xl"
+                className={`relative aspect-[3/4] rounded-lg overflow-hidden border shadow-xl transition-colors duration-300 ${
+                  theme === "dark"
+                    ? "bg-gray-900 border-gray-800"
+                    : "bg-gray-100 border-gray-300"
+                }`}
               >
                 {/* Placeholder for image - replace with actual Image component */}
-                <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                  <div className="text-center text-gray-400">
+                <div
+                  className={`w-full h-full flex items-center justify-center transition-colors duration-300 ${
+                    theme === "dark"
+                      ? "bg-gradient-to-br from-gray-800 to-gray-900"
+                      : "bg-gradient-to-br from-gray-200 to-gray-100"
+                  }`}
+                >
+                  <div
+                    className={`text-center transition-colors duration-300 ${
+                      theme === "dark" ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
                     <div className="w-32 h-32 bg-[#BFA615] rounded-full mx-auto mb-4 flex items-center justify-center shadow-2xl">
                       <span className="text-3xl font-bold text-black">EA</span>
                     </div>
                     <p className="text-lg font-medium">Emmanuel Asolo</p>
-                    <p className="text-sm text-gray-500 mt-2">
+                    <p
+                      className={`text-sm mt-2 transition-colors duration-300 ${
+                        theme === "dark" ? "text-gray-500" : "text-gray-500"
+                      }`}
+                    >
                       AI & Data Science
                     </p>
                   </div>
@@ -178,9 +225,15 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1 }}
-                className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-sm rounded px-3 py-2"
+                className={`absolute bottom-4 left-4 backdrop-blur-sm rounded px-3 py-2 transition-colors duration-300 ${
+                  theme === "dark" ? "bg-black/70" : "bg-white/80"
+                }`}
               >
-                <div className="text-white font-semibold">
+                <div
+                  className={`font-semibold transition-colors duration-300 ${
+                    theme === "dark" ? "text-white" : "text-gray-800"
+                  }`}
+                >
                   MSc AI & Data Science
                 </div>
                 <div className="text-[#BFA615] text-xs">AI Research</div>
@@ -209,7 +262,9 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center text-slate-400/70"
+            className={`flex flex-col items-center transition-colors duration-300 ${
+              theme === "dark" ? "text-slate-400/70" : "text-gray-500/70"
+            }`}
           >
             <span className="text-xs uppercase tracking-widest mb-2">
               Scroll to explore

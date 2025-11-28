@@ -1,15 +1,29 @@
+"use client";
 import { motion } from "framer-motion";
 import { FiLinkedin, FiMail } from "react-icons/fi";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function Footer() {
+  const { theme } = useTheme();
+
   return (
-    <footer className="bg-gray-800/50 border-t border-gray-800 py-12">
+    <footer
+      className={`border-t py-12 transition-colors duration-300 ${
+        theme === "dark"
+          ? "bg-gray-800/50 border-gray-800"
+          : "bg-gray-300 border-gray-300"
+      }`}
+    >
       <div className="container mx-auto px-6">
         <div className="text-center">
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-2xl font-bold mb-6 bg-gradient-to-r from-yellow-600 to-slate-400 bg-clip-text text-transparent"
+            className={`text-2xl font-bold mb-6 bg-linear-to-r bg-clip-text text-transparent transition-colors duration-300 ${
+              theme === "dark"
+                ? "from-yellow-600 to-slate-400"
+                : "from-yellow-700 to-slate-500"
+            }`}
           >
             Let&apos;s Build the Future Together
           </motion.h3>
@@ -17,7 +31,9 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-gray-400 mb-8 max-w-md mx-auto"
+            className={`mb-8 max-w-md mx-auto transition-colors duration-300 ${
+              theme === "dark" ? "text-gray-400" : "text-gray-600"
+            }`}
           >
             Interested in collaborating on AI research or innovative projects?
             I&apos;m always open to discussing new opportunities.
@@ -31,14 +47,18 @@ export default function Footer() {
             <motion.a
               whileHover={{ scale: 1.1, y: -5 }}
               href="https://linkedin.com/in/emmanuel-asolo-b197091b7"
-              className="p-3 rounded-full bg-gray-800 hover:bg-yellow-600 transition-colors"
+              className={`p-3 rounded-full hover:bg-yellow-600 transition-colors duration-300 ${
+                theme === "dark" ? "bg-gray-800" : "bg-gray-400/50"
+              }`}
             >
               <FiLinkedin className="w-6 h-6" />
             </motion.a>
             <motion.a
               whileHover={{ scale: 1.1, y: -5 }}
               href="mailto:e.asolo-2023@hull.ac.uk"
-              className="p-3 rounded-full bg-gray-800 hover:bg-yellow-600 transition-colors"
+              className={`p-3 rounded-full hover:bg-yellow-600 transition-colors duration-300 ${
+                theme === "dark" ? "bg-gray-800" : "bg-gray-400/50"
+              }`}
             >
               <FiMail className="w-6 h-6" />
             </motion.a>
@@ -47,9 +67,11 @@ export default function Footer() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="text-gray-600 text-sm"
+            className={`text-sm transition-colors duration-300 ${
+              theme === "dark" ? "text-gray-600" : "text-gray-500"
+            }`}
           >
-            © 2024 Emmanuel Asolo. All rights reserved.
+            © 2025 Emmanuel Asolo. All rights reserved.
           </motion.p>
         </div>
       </div>
