@@ -51,7 +51,7 @@ export default function Publications({ id }: PublicationsProps) {
     <section
       id={id}
       className={`py-20 transition-colors duration-300 ${
-        theme === "dark" ? "bg-slate-800" : "bg-gray-100"
+        theme === "dark" ? "bg-slate-800" : "bg-gray-200"
       }`}
     >
       <div className="container mx-auto px-6">
@@ -264,17 +264,17 @@ export default function Publications({ id }: PublicationsProps) {
 
                 {/* Scroll gradient indicators */}
                 <div
-                  className={`absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r pointer-events-none rounded-l-lg transition-colors duration-300 ${
+                  className={`absolute left-0  bottom-0 w-8 bg-gradient-to-r pointer-events-none rounded-l-lg transition-colors duration-300 ${
                     theme === "dark"
-                      ? "from-slate-950 to-transparent"
-                      : "from-gray-100 to-transparent"
+                      ? "from-slate-950 to-transparent top-0"
+                      : "from-gray-400 to-transparent -top-2"
                   }`}
                 />
                 <div
-                  className={`absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l pointer-events-none rounded-r-lg transition-colors duration-300 ${
+                  className={`absolute right-0 bottom-0 w-8 bg-gradient-to-l pointer-events-none rounded-r-lg transition-colors duration-300 ${
                     theme === "dark"
-                      ? "from-slate-950 to-transparent"
-                      : "from-gray-100 to-transparent"
+                      ? "from-slate-950 to-transparent top-0"
+                      : "from-gray-400 to-transparent -top-2"
                   }`}
                 />
               </div>
@@ -309,20 +309,38 @@ export default function Publications({ id }: PublicationsProps) {
             }`}
           >
             <span>
-              Total Publications:{" "}
-              <strong className="text-yellow-400">{publications.length}</strong>
+              Total Publications:
+              <strong
+                className={`${
+                  theme === "dark" ? "text-yellow-400" : "text-yellow-800"
+                }
+            `}
+              >
+                {" "}
+                {publications.length}
+              </strong>
             </span>
             <span>•</span>
             <span>
               Authored:{" "}
-              <strong className="text-yellow-400">
+              <strong
+                className={`${
+                  theme === "dark" ? "text-yellow-400" : "text-yellow-800"
+                }
+            `}
+              >
                 {publications.filter((p) => p.type === "authored").length}
               </strong>
             </span>
             <span>•</span>
             <span>
               Co-authored:{" "}
-              <strong className="text-yellow-400">
+              <strong
+                className={`${
+                  theme === "dark" ? "text-yellow-400" : "text-yellow-800"
+                }
+            `}
+              >
                 {publications.filter((p) => p.type === "co-authored").length}
               </strong>
             </span>

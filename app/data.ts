@@ -116,20 +116,41 @@ export const experiences = [
   },
 ];
 
-export const getTypeColor = (type: string) => {
-  switch (type) {
-    case "leadership":
-      return "bg-yellow-400/10 text-yellow-400 border-yellow-400/20";
-    case "tech":
-      return "bg-blue-400/10 text-blue-400 border-blue-400/20";
-    case "data":
-      return "bg-green-400/10 text-green-400 border-green-400/20";
-    case "research":
-      return "bg-purple-400/10 text-purple-400 border-purple-400/20";
-    case "development":
-      return "bg-cyan-400/10 text-cyan-400 border-cyan-400/20";
-    default:
-      return "bg-gray-400/10 text-gray-400 border-gray-400/20";
+export const getTypeColor = (
+  type: string,
+  theme: "light" | "dark" = "dark"
+) => {
+  if (theme === "light") {
+    switch (type) {
+      case "leadership":
+        return "bg-yellow-100 text-yellow-700 border-yellow-300";
+      case "tech":
+        return "bg-blue-100 text-blue-700 border-blue-300";
+      case "data":
+        return "bg-green-100 text-green-700 border-green-300";
+      case "research":
+        return "bg-purple-100 text-purple-700 border-purple-300";
+      case "development":
+        return "bg-cyan-100 text-cyan-700 border-cyan-300";
+      default:
+        return "bg-gray-100 text-gray-700 border-gray-300";
+    }
+  } else {
+    // Dark mode (original styles)
+    switch (type) {
+      case "leadership":
+        return "bg-yellow-400/10 text-yellow-400 border-yellow-400/20";
+      case "tech":
+        return "bg-blue-400/10 text-blue-400 border-blue-400/20";
+      case "data":
+        return "bg-green-400/10 text-green-400 border-green-400/20";
+      case "research":
+        return "bg-purple-400/10 text-purple-400 border-purple-400/20";
+      case "development":
+        return "bg-cyan-400/10 text-cyan-400 border-cyan-400/20";
+      default:
+        return "bg-gray-400/10 text-gray-400 border-gray-400/20";
+    }
   }
 };
 

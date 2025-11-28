@@ -31,7 +31,7 @@ export default function About({ id }: NavProps) {
           >
             About Me
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-yellow-500 to-yellow-900 mx-auto"></div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
@@ -49,7 +49,7 @@ export default function About({ id }: NavProps) {
             </h3>
             <p
               className={`mb-6 leading-relaxed transition-colors duration-300 ${
-                theme === "dark" ? "text-gray-300" : "text-gray-600"
+                theme === "dark" ? "text-gray-300" : "text-gray-500"
               }`}
             >
               Currently pursuing an MSc in Artificial Intelligence and Data
@@ -59,7 +59,7 @@ export default function About({ id }: NavProps) {
             </p>
             <p
               className={`mb-6 leading-relaxed transition-colors duration-300 ${
-                theme === "dark" ? "text-gray-300" : "text-gray-600"
+                theme === "dark" ? "text-gray-300" : "text-gray-500"
               }`}
             >
               I combine strong technical skills with a commitment to ethical and
@@ -144,7 +144,7 @@ export default function About({ id }: NavProps) {
                 className={`p-6 rounded-xl border transition-colors duration-300 ${
                   theme === "dark"
                     ? "bg-gradient-to-br from-yellow-800 to-gray-900 border-gray-700"
-                    : "bg-gradient-to-br from-yellow-50 to-white border-gray-200"
+                    : "bg-gradient-to-br from-yellow-600 to-white border-gray-200"
                 }`}
               >
                 <FiDatabase className="w-8 h-8 text-yellow-400 mb-3" />
@@ -169,7 +169,7 @@ export default function About({ id }: NavProps) {
                 className={`p-6 rounded-xl border transition-colors duration-300 ${
                   theme === "dark"
                     ? "bg-gradient-to-br from-yellow-800 to-gray-900 border-gray-700"
-                    : "bg-gradient-to-br from-yellow-50 to-white border-gray-200"
+                    : "bg-gradient-to-br from-yellow-600 to-white border-gray-200"
                 }`}
               >
                 <FiBarChart2 className="w-8 h-8 text-yellow-400 mb-3" />

@@ -12,6 +12,10 @@ interface HeroProps {
 export default function Hero({ id, setActiveSection }: HeroProps) {
   const { theme } = useTheme();
 
+  // Define colors based on theme
+  const yellowColor = theme === "dark" ? "#BFA615" : "#854d0e"; // yellow-800 for light mode
+  const yellowHoverColor = theme === "dark" ? "#f59e0b" : "#a16207"; // yellow-700 for light mode hover
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -52,7 +56,10 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center space-x-2 mb-6 mt-4 lg:mt-0"
             >
-              <div className="w-2 h-2 bg-[#BFA615] rounded-full animate-pulse"></div>
+              <div
+                className="w-2 h-2 rounded-full animate-pulse"
+                style={{ backgroundColor: yellowColor }}
+              ></div>
               <span
                 className={`text-sm font-medium tracking-wider transition-colors duration-300 ${
                   theme === "dark" ? "text-slate-300" : "text-gray-600"
@@ -81,7 +88,9 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
               }`}
             >
               MSc Artificial Intelligence & Data Science
-              <span className="text-[#BFA615] mx-2">•</span>
+              <span className="mx-2" style={{ color: yellowColor }}>
+                •
+              </span>
               University of Hull
             </motion.p>
 
@@ -90,9 +99,10 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className={`text-sm lg:text-md mb-8 leading-relaxed max-w-lg border-l-4 border-[#BFA615] pl-4 transition-colors duration-300 ${
+              className={`text-sm lg:text-md mb-8 leading-relaxed max-w-lg border-l-4 pl-4 transition-colors duration-300 ${
                 theme === "dark" ? "text-gray-400" : "text-gray-600"
               }`}
+              style={{ borderLeftColor: yellowColor }}
             >
               Research-driven AI specialist passionate about building ethical
               and explainable AI systems. Currently advancing research in Deep
@@ -109,11 +119,19 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
               <motion.button
                 whileHover={{
                   scale: 1.05,
-                  backgroundColor: "#f59e0b",
-                  boxShadow: "0 10px 30px -10px rgba(245, 158, 11, 0.3)",
+                  backgroundColor: yellowHoverColor,
+                  boxShadow: `0 10px 30px -10px ${
+                    theme === "dark"
+                      ? "rgba(245, 158, 11, 0.3)"
+                      : "rgba(133, 77, 14, 0.3)"
+                  }`,
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-yellow-400 text-black rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+                className="px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+                style={{
+                  backgroundColor: theme === "dark" ? "#f59e0b" : "#864D0F", // yellow-500 for light mode button
+                  color: theme === "dark" ? "black" : "black",
+                }}
                 onClick={() => scrollToSection("projects")}
               >
                 <FiCode className="w-5 h-5" />
@@ -123,11 +141,14 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
               <motion.button
                 whileHover={{
                   scale: 1.05,
-                  borderColor: "#f59e0b",
-                  backgroundColor: "rgba(245, 158, 11, 0.1)",
+                  borderColor: yellowColor,
+                  backgroundColor:
+                    theme === "dark"
+                      ? "rgba(191, 166, 21, 0.1)"
+                      : "rgba(133, 77, 14, 0.1)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-8 py-4 border-2 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 hover:border-[#BFA615] ${
+                className={`px-8 py-4 border-2 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 ${
                   theme === "dark"
                     ? "border-gray-600 text-white"
                     : "border-gray-400 text-gray-800"
@@ -152,7 +173,10 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
                 { number: "MSc", label: "AI & Data Science" },
               ].map((stat, index) => (
                 <div key={stat.label} className="text-center">
-                  <div className="text-2xl font-bold text-[#BFA615] mb-1">
+                  <div
+                    className="text-2xl font-bold mb-1"
+                    style={{ color: yellowColor }}
+                  >
                     {stat.number}
                   </div>
                   <div
@@ -197,7 +221,10 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
                       theme === "dark" ? "text-gray-400" : "text-gray-600"
                     }`}
                   >
-                    <div className="w-32 h-32 bg-[#BFA615] rounded-full mx-auto mb-4 flex items-center justify-center shadow-2xl">
+                    <div
+                      className="w-32 h-32 rounded-full mx-auto mb-4 flex items-center justify-center shadow-2xl"
+                      style={{ backgroundColor: yellowColor }}
+                    >
                       <span className="text-3xl font-bold text-black">EA</span>
                     </div>
                     <p className="text-lg font-medium">Emmanuel Asolo</p>
@@ -236,7 +263,9 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
                 >
                   MSc AI & Data Science
                 </div>
-                <div className="text-[#BFA615] text-xs">AI Research</div>
+                <div className="text-xs" style={{ color: yellowColor }}>
+                  AI Research
+                </div>
               </motion.div>
 
               {/* Single Floating Element */}
@@ -244,9 +273,10 @@ export default function Hero({ id, setActiveSection }: HeroProps) {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.8 }}
-                className="absolute -top-2 -right-2 bg-[#BFA615] text-black rounded-full w-8 h-8 flex items-center justify-center shadow-lg"
+                className="absolute -top-2 -right-2 rounded-full w-8 h-8 flex items-center justify-center shadow-lg"
+                style={{ backgroundColor: yellowColor }}
               >
-                <FiCpu className="w-4 h-4" />
+                <FiCpu className="w-4 h-4 text-black" />
               </motion.div>
             </div>
           </motion.div>

@@ -10,6 +10,14 @@ export default function Projects({ id }: NavProps) {
   const [showAll, setShowAll] = useState(false);
   const { theme } = useTheme();
 
+  // Define colors based on theme
+  const yellowColor = theme === "dark" ? "#BFA615" : "#854d0e"; // yellow-800 for light mode
+  const yellowHoverColor = theme === "dark" ? "#f59e0b" : "#a16207"; // yellow-700 for light mode hover
+  const yellowGradientFrom =
+    theme === "dark" ? "rgba(191, 166, 21, 0.8)" : "rgba(133, 77, 14, 0.8)";
+  const yellowGradientTo =
+    theme === "dark" ? "rgba(245, 158, 11, 0.6)" : "rgba(161, 98, 7, 0.6)";
+
   const displayedProjects = showAll ? allProjects : allProjects.slice(0, 4);
 
   const toggleShowAll = () => {
@@ -22,7 +30,7 @@ export default function Projects({ id }: NavProps) {
       className={`py-20 relative overflow-hidden transition-colors duration-300 ${
         theme === "dark"
           ? "bg-gradient-to-b from-black to-gray-900"
-          : "bg-gradient-to-b from-gray-200 to-white"
+          : "bg-gradient-to-b from-gray-300 to-white"
       }`}
     >
       <div className="container mx-auto px-6 relative z-10">
@@ -69,23 +77,32 @@ export default function Projects({ id }: NavProps) {
               >
                 {/* Project Card */}
                 <div
-                  className={`relative backdrop-blur-sm border rounded-xl p-5 transition-color duration-500  h-full flex flex-col overflow-hidden transition-colors duration-300 ${
+                  className={`relative backdrop-blur-sm rounded-xl p-5 transition-color duration-500 h-full flex flex-col overflow-hidden transition-colors duration-300 ${
                     theme === "dark"
                       ? "bg-gray-900 border-gray-800/60 group-hover:border-gray-700"
                       : "bg-white border-gray-300 group-hover:border-gray-200"
                   }`}
                 >
                   {/* Subtle Accent Bar */}
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400/80 via-yellow-500/60 to-yellow-400/80 transform scale-x-100 group-hover:bg-white transition-transform duration-500" />
+                  <div
+                    className="absolute top-0 left-0 w-full h-1 transform scale-x-100 group-hover:bg-white transition-transform duration-500"
+                    style={{
+                      background: `linear-gradient(to right, ${yellowGradientFrom}, ${yellowGradientTo}, ${yellowGradientFrom})`,
+                    }}
+                  />
 
                   {/* Header Section */}
                   <div className="flex justify-between items-start mb-4">
                     <span
                       className={`text-xs font-medium px-2.5 py-1 rounded-full border transition-colors duration-300 ${
                         project.status === "Finalist"
-                          ? "bg-yellow-400/10 text-yellow-300 border-yellow-400/20"
+                          ? theme === "dark"
+                            ? "bg-yellow-400/10 text-yellow-300 border-yellow-400/20"
+                            : "bg-yellow-800/10 text-yellow-800 border-yellow-800/20"
                           : project.status === "Research"
-                          ? "bg-blue-400/10 text-blue-300 border-blue-400/20"
+                          ? theme === "dark"
+                            ? "bg-blue-400/10 text-blue-300 border-blue-400/20"
+                            : "bg-blue-800/10 text-blue-800 border-blue-800/20"
                           : theme === "dark"
                           ? "bg-gray-400/10 text-gray-300 border-gray-400/20"
                           : "bg-gray-400/10 text-gray-600 border-gray-400/20"
@@ -95,7 +112,10 @@ export default function Projects({ id }: NavProps) {
                     </span>
 
                     {project.featured && (
-                      <div className="flex items-center space-x-1 text-yellow-400/80">
+                      <div
+                        className="flex items-center space-x-1"
+                        style={{ color: yellowColor }}
+                      >
                         <FiAward className="w-3.5 h-3.5" />
                       </div>
                     )}
@@ -104,8 +124,10 @@ export default function Projects({ id }: NavProps) {
                   {/* Project Content */}
                   <div className="flex-1 mb-4">
                     <h3
-                      className={`text-lg font-semibold mb-3 group-hover:text-yellow-400/90 transition-colors duration-300 leading-tight ${
-                        theme === "dark" ? "text-white" : "text-gray-800"
+                      className={`text-lg font-semibold mb-3 group-hover:transition-colors duration-300 leading-tight ${
+                        theme === "dark"
+                          ? "text-white group-hover:text-yellow-400/90"
+                          : "text-gray-800 group-hover:text-yellow-800"
                       }`}
                     >
                       {project.title}
@@ -152,20 +174,20 @@ export default function Projects({ id }: NavProps) {
                   {/* Action Buttons */}
                   <div className="flex space-x-2 pt-3 transition-colors duration-300">
                     <button
-                      className={`flex-1 py-2 px-3 rounded-lg text-sm hover:bg-gray-700/50 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2 border transition-colors duration-300 ${
+                      className={`flex-1 py-2 px-3 rounded-lg text-sm hover:transition-all duration-300 flex items-center justify-center space-x-2 border transition-colors duration-300 ${
                         theme === "dark"
-                          ? "bg-gray-800/50 text-gray-300 border-gray-700/30"
-                          : "bg-gray-100 text-gray-600 border-gray-300"
+                          ? "bg-gray-800/50 text-gray-300 border-gray-700/30 hover:bg-gray-700/50 hover:text-white"
+                          : "bg-gray-100 text-gray-600 border-gray-300 hover:bg-gray-200 hover:text-gray-800"
                       }`}
                     >
                       <FiExternalLink className="w-3.5 h-3.5" />
                       <span>Details</span>
                     </button>
                     <button
-                      className={`p-2 rounded-lg hover:bg-gray-700/50 hover:text-white transition-all duration-300 border transition-colors duration-300 ${
+                      className={`p-2 rounded-lg hover:transition-all duration-300 border transition-colors duration-300 ${
                         theme === "dark"
-                          ? "bg-gray-800/50 text-gray-400 border-gray-700/30"
-                          : "bg-gray-100 text-gray-600 border-gray-300"
+                          ? "bg-gray-800/50 text-gray-400 border-gray-700/30 hover:bg-gray-700/50 hover:text-white"
+                          : "bg-gray-100 text-gray-600 border-gray-300 hover:bg-gray-200 hover:text-gray-800"
                       }`}
                     >
                       <FiGithub className="w-3.5 h-3.5" />
@@ -173,11 +195,24 @@ export default function Projects({ id }: NavProps) {
                   </div>
 
                   {/* Subtle Hover Effects */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-yellow-400/3 via-transparent to-yellow-400/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                  <div
+                    className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
+                    style={{
+                      background: `linear-gradient(to bottom right, rgba(191, 166, 21, 0.03), transparent, rgba(191, 166, 21, 0.02))`,
+                    }}
+                  />
                 </div>
 
                 {/* Very Subtle Background Glow */}
-                <div className="absolute inset-0 rounded-xl bg-yellow-400/3 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-20 scale-105" />
+                <div
+                  className="absolute inset-0 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-20 scale-105"
+                  style={{
+                    backgroundColor:
+                      theme === "dark"
+                        ? "rgba(191, 166, 21, 0.03)"
+                        : "rgba(133, 77, 14, 0.03)",
+                  }}
+                />
               </motion.div>
             ))}
           </AnimatePresence>
@@ -193,11 +228,22 @@ export default function Projects({ id }: NavProps) {
           <motion.button
             whileHover={{
               scale: 1.05,
-              boxShadow: "0 10px 30px -10px rgba(245, 158, 11, 0.3)",
+              boxShadow:
+                theme === "dark"
+                  ? "0 10px 30px -10px rgba(245, 158, 11, 0.3)"
+                  : "0 10px 30px -10px rgba(133, 77, 14, 0.3)",
             }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleShowAll}
-            className="px-8 py-4 border-2 border-yellow-400 text-yellow-400 rounded-xl font-semibold hover:bg-yellow-400/10 transition-all duration-300 flex items-center justify-center space-x-2 mx-auto"
+            className="px-8 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center space-x-2 mx-auto"
+            style={{
+              border: `2px solid ${yellowColor}`,
+              color: yellowColor,
+              backgroundColor:
+                theme === "dark"
+                  ? "rgba(191, 166, 21, 0.1)"
+                  : "rgba(133, 77, 14, 0.1)",
+            }}
           >
             <span>
               {showAll

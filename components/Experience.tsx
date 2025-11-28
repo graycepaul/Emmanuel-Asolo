@@ -12,7 +12,7 @@ export default function Experience({ id }: NavProps) {
       className={`py-20 transition-colors duration-300 ${
         theme === "dark"
           ? "bg-gradient-to-b from-gray-950 to-gray-900"
-          : "bg-gradient-to-b from-gray-100 to-white"
+          : "bg-gradient-to-b from-gray-50 to-white"
       }`}
     >
       <div className="container mx-auto px-6">
@@ -25,7 +25,7 @@ export default function Experience({ id }: NavProps) {
         >
           <h2
             className={`text-4xl md:text-5xl font-bold mb-2 transition-colors duration-300 ${
-              theme === "dark" ? "text-white" : "text-gray-800"
+              theme === "dark" ? "text-white" : "text-gray-900"
             }`}
           >
             Professional Experience
@@ -36,7 +36,7 @@ export default function Experience({ id }: NavProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
             className={`text-lg max-w-2xl mx-auto leading-relaxed transition-colors duration-300 ${
-              theme === "dark" ? "text-gray-400" : "text-gray-600"
+              theme === "dark" ? "text-gray-400" : "text-gray-700"
             }`}
           >
             My career path through technology, research, and leadership roles
@@ -48,7 +48,7 @@ export default function Experience({ id }: NavProps) {
           {/* Timeline Line */}
           <div
             className={`absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full hidden lg:block transition-colors duration-300 ${
-              theme === "dark" ? "bg-gray-800/50" : "bg-gray-300/50"
+              theme === "dark" ? "bg-gray-800/50" : "bg-gray-400/60"
             }`}
           ></div>
 
@@ -65,7 +65,7 @@ export default function Experience({ id }: NavProps) {
                 }`}
               >
                 {/* Timeline Dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-yellow-400 rounded-full border-4 border-black z-10 hidden lg:block"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-2 h-2 bg-yellow-500 rounded-full  shadow-lg z-10 hidden lg:block"></div>
 
                 {/* Content Card */}
                 <div
@@ -74,41 +74,42 @@ export default function Experience({ id }: NavProps) {
                   } w-full`}
                 >
                   <div
-                    className={`backdrop-blur-sm border rounded-xl p-6 hover:border-gray-700/80 transition-all duration-500 group transition-colors duration-300 ${
+                    className={`backdrop-blur-sm border rounded-xl p-6 transition-all group duration-300 ${
                       theme === "dark"
-                        ? "bg-gray-900/40 border-gray-800/60"
-                        : "bg-white/80 border-gray-300"
+                        ? "bg-gray-900/40 border-gray-800/60 hover:border-gray-700/80"
+                        : "bg-white border-gray-300 shadow-sm hover:shadow-md hover:border-gray-400"
                     }`}
                   >
                     {/* Header */}
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-3">
-                      <div className="flex items-start space-x-3">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-3 w-full">
+                      <div className="flex items-start space-x-3 w-fit">
                         <div
                           className={`p-2 rounded-lg ${getTypeColor(
-                            exp.type
+                            exp.type,
+                            theme
                           )} mt-1`}
                         >
                           <exp.icon className="w-4 h-4" />
                         </div>
                         <div>
                           <h3
-                            className={`text-lg font-semibold group-hover:text-yellow-400 transition-colors duration-300 ${
-                              theme === "dark" ? "text-white" : "text-gray-800"
+                            className={`text-lg font-semibold group-hover:text-yellow-600 transition-colors duration-300 ${
+                              theme === "dark" ? "text-white" : "text-gray-900"
                             }`}
                           >
                             {exp.role}
                           </h3>
-                          <p className="text-yellow-400 font-medium text-sm">
+                          <p className="text-yellow-600 font-medium text-sm">
                             {exp.company}
                           </p>
                         </div>
                       </div>
-                      <div className="flex flex-col items-end gap-2">
+                      <div className="flex flex-col items-end gap-2 min-w-fit">
                         <span
-                          className={`text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 ${
+                          className={`text-sm min-w-fit font-medium px-3 py-1 rounded-full transition-colors duration-300 ${
                             theme === "dark"
-                              ? "text-gray-400 bg-gray-800/50"
-                              : "text-gray-600 bg-gray-200/50"
+                              ? "text-gray-300 bg-gray-800/50"
+                              : "text-gray-700 bg-gray-200"
                           }`}
                         >
                           {exp.period}
@@ -116,8 +117,8 @@ export default function Experience({ id }: NavProps) {
                         <span
                           className={`text-xs px-2 py-1 rounded transition-colors duration-300 ${
                             theme === "dark"
-                              ? "text-gray-500 bg-gray-800/30"
-                              : "text-gray-500 bg-gray-200/30"
+                              ? "text-gray-400 bg-gray-800/30"
+                              : "text-gray-600 bg-gray-100"
                           }`}
                         >
                           {exp.industry}
@@ -128,7 +129,7 @@ export default function Experience({ id }: NavProps) {
                     {/* Description */}
                     <p
                       className={`mb-4 text-sm leading-relaxed transition-colors duration-300 ${
-                        theme === "dark" ? "text-gray-300" : "text-gray-600"
+                        theme === "dark" ? "text-gray-300" : "text-gray-700"
                       }`}
                     >
                       {exp.description}
@@ -138,7 +139,7 @@ export default function Experience({ id }: NavProps) {
                     <div className="space-y-2">
                       <h4
                         className={`text-sm font-medium transition-colors duration-300 ${
-                          theme === "dark" ? "text-gray-400" : "text-gray-600"
+                          theme === "dark" ? "text-gray-400" : "text-gray-800"
                         }`}
                       >
                         Key Achievements:
@@ -149,12 +150,12 @@ export default function Experience({ id }: NavProps) {
                             key={i}
                             className="flex items-start space-x-3 text-sm"
                           >
-                            <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
                             <span
                               className={`leading-relaxed transition-colors duration-300 ${
                                 theme === "dark"
                                   ? "text-gray-400"
-                                  : "text-gray-600"
+                                  : "text-gray-700"
                               }`}
                             >
                               {achievement}
@@ -182,17 +183,17 @@ export default function Experience({ id }: NavProps) {
         >
           <div
             className={`inline-flex items-center space-x-4 text-sm transition-colors duration-300 ${
-              theme === "dark" ? "text-gray-400" : "text-gray-600"
+              theme === "dark" ? "text-gray-400" : "text-gray-700"
             }`}
           >
             <span>2017</span>
             <div
               className={`w-24 h-1 rounded-full overflow-hidden transition-colors duration-300 ${
-                theme === "dark" ? "bg-gray-700" : "bg-gray-300"
+                theme === "dark" ? "bg-gray-700" : "bg-gray-400"
               }`}
             >
               <div
-                className="h-full bg-yellow-400 rounded-full"
+                className="h-full bg-yellow-500 rounded-full"
                 style={{ width: "100%" }}
               ></div>
             </div>
@@ -200,7 +201,7 @@ export default function Experience({ id }: NavProps) {
           </div>
           <p
             className={`text-xs mt-2 transition-colors duration-300 ${
-              theme === "dark" ? "text-gray-500" : "text-gray-500"
+              theme === "dark" ? "text-gray-500" : "text-gray-600"
             }`}
           >
             6+ years of professional growth

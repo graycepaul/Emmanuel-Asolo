@@ -57,7 +57,7 @@ export default function Footer() {
               whileHover={{ scale: 1.1, y: -5 }}
               href="mailto:e.asolo-2023@hull.ac.uk"
               className={`p-3 rounded-full hover:bg-yellow-600 transition-colors duration-300 ${
-                theme === "dark" ? "bg-gray-800" : "bg-gray-400/50"
+                theme === "dark" ? "bg-gray-800 " : "bg-gray-400/50"
               }`}
             >
               <FiMail className="w-6 h-6" />
