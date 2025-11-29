@@ -73,7 +73,7 @@ export default function Navigation({
     <>
       <nav
         style={{
-          backgroundColor: isScrolled ? "var(--color-navbar)" : "#F7F7F8",
+          backgroundColor: isScrolled ? "var(--color-navbar)" : "transparent",
           borderBottomColor: "var(--color-border)",
         }}
         className="fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-lg"
