@@ -26,13 +26,8 @@ export default function Publications({ id }: PublicationsProps) {
   const initialPublications = publications.slice(0, 4);
   const additionalPublications = publications.slice(4);
 
-  const handlePublicationClick = (title: string) => {
-    const searchQuery = encodeURIComponent(title);
-    window.open(
-      `https://scholar.google.com/scholar?q=${searchQuery}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
+  const handlePublicationClick = (url: string) => {
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   const scrollLeft = () => {
@@ -92,7 +87,7 @@ export default function Publications({ id }: PublicationsProps) {
               className="group"
             >
               <div
-                onClick={() => handlePublicationClick(pub.title)}
+                onClick={() => handlePublicationClick(pub.url)}
                 className={`border rounded-lg p-5 cursor-pointer transition-all duration-300 h-full flex flex-col transition-colors duration-300 ${
                   theme === "dark"
                     ? "bg-gray-900/30 border-gray-800/50 hover:border-yellow-400/30"
@@ -288,7 +283,7 @@ export default function Publications({ id }: PublicationsProps) {
                       className="flex-shrink-0 w-80" // Fixed width for consistent cards
                     >
                       <div
-                        onClick={() => handlePublicationClick(pub.title)}
+                        onClick={() => handlePublicationClick(pub.url)}
                         className={`border rounded-lg p-5 cursor-pointer transition-all duration-300 h-full flex flex-col group transition-colors duration-300 ${
                           theme === "dark"
                             ? "bg-gray-900/30 border-gray-800/50 hover:border-yellow-400/30"

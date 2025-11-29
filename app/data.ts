@@ -324,6 +324,7 @@ interface Publication {
   journal: string;
   year: string;
   type: "authored" | "co-authored";
+  url: string;
 }
 
 export const publications: Publication[] = [
@@ -334,7 +335,9 @@ export const publications: Publication[] = [
       "Journal of Development: Food, Energy, and Water Systems (JD-FEWS)",
     year: "2024",
     type: "authored",
+    url: "https://journals.uj.ac.za/index.php/DigitalFoodEnergy_WaterSystems/article/view/3260",
   },
+  // Add missing publication
   {
     title:
       "Enhancing Urban Surveillance with Fog Computing, Mobile Cloud, and Big Data Analytics in 5G Networks",
@@ -342,6 +345,7 @@ export const publications: Publication[] = [
       "International Journal of Emerging Multidisciplinary Technologies (IJEMT)",
     year: "2024",
     type: "authored",
+    url: "https://scholar.google.com/scholar?q=Enhancing%20Urban%20Surveillance%20with%20Fog%20Computing%2C%20Mobile%20Cloud%2C%20and%20Big%20Data%20Analytics%20in%205G%20Networks",
   },
   {
     title:
@@ -349,6 +353,7 @@ export const publications: Publication[] = [
     journal: "American Journal of Business and Social Research (AJBSR)",
     year: "2025",
     type: "co-authored",
+    url: "https://journals.uj.ac.za/index.php/DigitalFoodEnergy_WaterSystems/article/view/3260",
   },
   {
     title:
@@ -356,7 +361,9 @@ export const publications: Publication[] = [
     journal: "Results in Engineering (ScienceDirect)",
     year: "2025",
     type: "co-authored",
+    url: "https://www.sciencedirect.com/science/article/pii/S2590123025000155",
   },
+  //add missing publication
   {
     title:
       "Assessing the Cybersecurity Risks Associated with the Internet of Things (IoT) Devices",
@@ -364,6 +371,16 @@ export const publications: Publication[] = [
       "Makilauniss Journal of Advanced Engineering International (MJAEI)",
     year: "2024",
     type: "co-authored",
+    url: "https://scholar.google.com/scholar?q=Assessing%20the%20Cybersecurity%20Risks%20Associated%20with%20the%20Internet%20of%20Things%20(IoT)%20Devices",
+  },
+  {
+    title:
+      "AI-Powered Decision Support Systems for Sustainable Agriculture Using AI-Chatbot Solution",
+    journal:
+      "Journal of Development: Food, Energy, and Water Systems (JD-FEWS)",
+    year: "2024",
+    type: "authored",
+    url: "https://journals.uj.ac.za/index.php/DigitalFoodEnergy_WaterSystems/article/view/3260",
   },
   {
     title:
@@ -372,15 +389,9 @@ export const publications: Publication[] = [
       "International Journal of Progressive Sciences and Technologies (IJPSAT)",
     year: "2024",
     type: "co-authored",
+    url: "https://www.researchgate.net/profile/Emmanuel-Asolo/publication/385492457_Organizational_Communication_Culture_as_Correlate_of_Employee_Productivity_in_South-West_Nigeria/links/67263e3277b63d1220d50add/Organizational-Communication-Culture-as-Correlate-of-Employee-Productivity-in-South-West-Nigeria.pdf",
   },
-  {
-    title:
-      "AI-Powered Decision Support Systems for Sustainable Agriculture Using AI-Chatbot Solution",
-    journal:
-      "Journal of Development: Food, Energy, and Water Systems (JD-FEWS)",
-    year: "2024",
-    type: "co-authored",
-  },
+  //add missing publication
   {
     title:
       "Enhancing Urban Surveillance with Fog Computing, Mobile Cloud, and Big Data Analytics in 5G Networks",
@@ -388,5 +399,6 @@ export const publications: Publication[] = [
       "International Journal of Emerging Multidisciplinary Technologies (IJEMT)",
     year: "2024",
     type: "co-authored",
+    url: "https://scholar.google.com/scholar?q=Enhancing%20Urban%20Surveillance%20with%20Fog%20Computing%2C%20Mobile%20Cloud%2C%20and%20Big%20Data%20Analytics%20in%205G%20Networks",
   },
 ];
