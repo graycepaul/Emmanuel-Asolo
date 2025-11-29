@@ -19,6 +19,10 @@ export default function Publications({ id }: PublicationsProps) {
   const [scrollPosition, setScrollPosition] = useState(0);
   const { theme } = useTheme();
 
+  // Define colors based on theme
+  const yellowColor = theme === "dark" ? "#BFA615" : "#854d0e"; // yellow-800 for light mode
+  const yellowHoverColor = theme === "dark" ? "#f59e0b" : "#a16207"; // yellow-700 for light mode hover
+
   const initialPublications = publications.slice(0, 4);
   const additionalPublications = publications.slice(4);
 
@@ -89,22 +93,29 @@ export default function Publications({ id }: PublicationsProps) {
             >
               <div
                 onClick={() => handlePublicationClick(pub.title)}
-                className={`border rounded-lg p-5 cursor-pointer hover:border-yellow-400/30 transition-all duration-300 h-full flex flex-col transition-colors duration-300 ${
+                className={`border rounded-lg p-5 cursor-pointer transition-all duration-300 h-full flex flex-col transition-colors duration-300 ${
                   theme === "dark"
-                    ? "bg-gray-900/30 border-gray-800/50"
-                    : "bg-white/80 border-gray-300"
+                    ? "bg-gray-900/30 border-gray-800/50 hover:border-yellow-400/30"
+                    : "bg-white/80 border-gray-300 hover:border-yellow-800/30"
                 }`}
               >
                 {/* Year and Type */}
                 <div className="flex justify-between items-center mb-3">
-                  <span className="text-yellow-400 text-sm font-semibold">
+                  <span
+                    className="text-sm font-semibold"
+                    style={{ color: yellowColor }}
+                  >
                     {pub.year}
                   </span>
                   <span
                     className={`text-xs px-2 py-1 rounded ${
                       pub.type === "authored"
-                        ? "bg-yellow-400/10 text-yellow-400"
-                        : "bg-blue-400/10 text-blue-400"
+                        ? theme === "dark"
+                          ? "bg-yellow-400/10 text-yellow-400"
+                          : "bg-yellow-800/10 text-yellow-800"
+                        : theme === "dark"
+                        ? "bg-blue-400/10 text-blue-400"
+                        : "bg-blue-800/10 text-blue-800"
                     }`}
                   >
                     {pub.type}
@@ -113,8 +124,10 @@ export default function Publications({ id }: PublicationsProps) {
 
                 {/* Title */}
                 <h3
-                  className={`text-sm font-medium mb-3 line-clamp-3 group-hover:text-yellow-400 transition-colors duration-300 ${
-                    theme === "dark" ? "text-white" : "text-gray-800"
+                  className={`text-sm font-medium mb-3 line-clamp-3 transition-colors duration-300 ${
+                    theme === "dark"
+                      ? "text-white group-hover:text-yellow-400"
+                      : "text-gray-800 group-hover:text-yellow-800"
                   }`}
                 >
                   {pub.title}
@@ -126,13 +139,24 @@ export default function Publications({ id }: PublicationsProps) {
                     theme === "dark" ? "text-gray-400" : "text-gray-600"
                   }`}
                 >
-                  <FiFileText className="w-3 h-3 text-yellow-400/70" />
+                  <FiFileText
+                    className="w-3 h-3"
+                    style={{
+                      color:
+                        theme === "dark"
+                          ? "rgba(191, 166, 21, 0.7)"
+                          : "rgba(133, 77, 14, 0.7)",
+                    }}
+                  />
                   <span className="line-clamp-1">{pub.journal}</span>
                 </div>
 
                 {/* Hover Action */}
                 <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <FiExternalLink className="w-4 h-4 text-yellow-400" />
+                  <FiExternalLink
+                    className="w-4 h-4"
+                    style={{ color: yellowColor }}
+                  />
                 </div>
               </div>
             </motion.div>
@@ -150,7 +174,34 @@ export default function Publications({ id }: PublicationsProps) {
             >
               <button
                 onClick={() => setShowAll(true)}
-                className="text-yellow-400 hover:text-yellow-300 text-sm transition-colors duration-300 border border-yellow-400/30 hover:border-yellow-400/50 rounded-lg px-6 py-2"
+                className="text-sm transition-colors duration-300 rounded-lg px-6 py-2"
+                style={{
+                  color: yellowColor,
+                  border: `1px solid ${
+                    theme === "dark"
+                      ? "rgba(191, 166, 21, 0.3)"
+                      : "rgba(133, 77, 14, 0.3)"
+                  }`,
+                  backgroundColor:
+                    theme === "dark"
+                      ? "rgba(191, 166, 21, 0.1)"
+                      : "rgba(133, 77, 14, 0.1)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color =
+                    theme === "dark" ? "#f59e0b" : "#a16207";
+                  e.currentTarget.style.borderColor =
+                    theme === "dark"
+                      ? "rgba(245, 158, 11, 0.5)"
+                      : "rgba(161, 98, 7, 0.5)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = yellowColor;
+                  e.currentTarget.style.borderColor =
+                    theme === "dark"
+                      ? "rgba(191, 166, 21, 0.3)"
+                      : "rgba(133, 77, 14, 0.3)";
+                }}
               >
                 View All Publications ({publications.length})
               </button>
@@ -179,17 +230,43 @@ export default function Publications({ id }: PublicationsProps) {
                 <div className="flex space-x-2">
                   <button
                     onClick={scrollLeft}
-                    className={`p-2 rounded-lg hover:bg-yellow-400 hover:text-black transition-all duration-300 transition-colors duration-300 ${
+                    className={`p-2 rounded-lg transition-all duration-300 transition-colors duration-300 ${
                       theme === "dark" ? "bg-gray-800" : "bg-gray-300"
                     }`}
+                    style={{
+                      color: theme === "dark" ? "#f3f4f6" : "#1f2937",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = yellowColor;
+                      e.currentTarget.style.color = "black";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor =
+                        theme === "dark" ? "#374151" : "#e5e7eb";
+                      e.currentTarget.style.color =
+                        theme === "dark" ? "#f3f4f6" : "#1f2937";
+                    }}
                   >
                     <FiChevronLeft className="w-4 h-4" />
                   </button>
                   <button
                     onClick={scrollRight}
-                    className={`p-2 rounded-lg hover:bg-yellow-400 hover:text-black transition-all duration-300 transition-colors duration-300 ${
+                    className={`p-2 rounded-lg transition-all duration-300 transition-colors duration-300 ${
                       theme === "dark" ? "bg-gray-800" : "bg-gray-300"
                     }`}
+                    style={{
+                      color: theme === "dark" ? "#f3f4f6" : "#1f2937",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = yellowColor;
+                      e.currentTarget.style.color = "black";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor =
+                        theme === "dark" ? "#374151" : "#e5e7eb";
+                      e.currentTarget.style.color =
+                        theme === "dark" ? "#f3f4f6" : "#1f2937";
+                    }}
                   >
                     <FiChevronRight className="w-4 h-4" />
                   </button>
@@ -212,22 +289,29 @@ export default function Publications({ id }: PublicationsProps) {
                     >
                       <div
                         onClick={() => handlePublicationClick(pub.title)}
-                        className={`border rounded-lg p-5 cursor-pointer hover:border-yellow-400/30 transition-all duration-300 h-full flex flex-col group transition-colors duration-300 ${
+                        className={`border rounded-lg p-5 cursor-pointer transition-all duration-300 h-full flex flex-col group transition-colors duration-300 ${
                           theme === "dark"
-                            ? "bg-gray-900/30 border-gray-800/50"
-                            : "bg-white/80 border-gray-300"
+                            ? "bg-gray-900/30 border-gray-800/50 hover:border-yellow-400/30"
+                            : "bg-white/80 border-gray-300 hover:border-yellow-800/30"
                         }`}
                       >
                         {/* Year and Type */}
                         <div className="flex justify-between items-center mb-3">
-                          <span className="text-yellow-400 text-sm font-semibold">
+                          <span
+                            className="text-sm font-semibold"
+                            style={{ color: yellowColor }}
+                          >
                             {pub.year}
                           </span>
                           <span
                             className={`text-xs px-2 py-1 rounded ${
                               pub.type === "authored"
-                                ? "bg-yellow-400/10 text-yellow-400"
-                                : "bg-blue-400/10 text-blue-400"
+                                ? theme === "dark"
+                                  ? "bg-yellow-400/10 text-yellow-400"
+                                  : "bg-yellow-800/10 text-yellow-800"
+                                : theme === "dark"
+                                ? "bg-blue-400/10 text-blue-400"
+                                : "bg-blue-800/10 text-blue-800"
                             }`}
                           >
                             {pub.type}
@@ -236,8 +320,10 @@ export default function Publications({ id }: PublicationsProps) {
 
                         {/* Title */}
                         <h3
-                          className={`text-sm font-medium mb-3 line-clamp-3 group-hover:text-yellow-400 transition-colors duration-300 ${
-                            theme === "dark" ? "text-white" : "text-gray-800"
+                          className={`text-sm font-medium mb-3 line-clamp-3 transition-colors duration-300 ${
+                            theme === "dark"
+                              ? "text-white group-hover:text-yellow-400"
+                              : "text-gray-800 group-hover:text-yellow-800"
                           }`}
                         >
                           {pub.title}
@@ -249,13 +335,24 @@ export default function Publications({ id }: PublicationsProps) {
                             theme === "dark" ? "text-gray-400" : "text-gray-600"
                           }`}
                         >
-                          <FiFileText className="w-3 h-3 text-yellow-400/70" />
+                          <FiFileText
+                            className="w-3 h-3"
+                            style={{
+                              color:
+                                theme === "dark"
+                                  ? "rgba(191, 166, 21, 0.7)"
+                                  : "rgba(133, 77, 14, 0.7)",
+                            }}
+                          />
                           <span className="line-clamp-2">{pub.journal}</span>
                         </div>
 
                         {/* Hover Action */}
                         <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <FiExternalLink className="w-4 h-4 text-yellow-400" />
+                          <FiExternalLink
+                            className="w-4 h-4"
+                            style={{ color: yellowColor }}
+                          />
                         </div>
                       </div>
                     </motion.div>
@@ -264,7 +361,7 @@ export default function Publications({ id }: PublicationsProps) {
 
                 {/* Scroll gradient indicators */}
                 <div
-                  className={`absolute left-0  bottom-0 w-8 bg-gradient-to-r pointer-events-none rounded-l-lg transition-colors duration-300 ${
+                  className={`absolute left-0 bottom-0 w-8 bg-gradient-to-r pointer-events-none rounded-l-lg transition-colors duration-300 ${
                     theme === "dark"
                       ? "from-slate-950 to-transparent top-0"
                       : "from-gray-400 to-transparent -top-2"
@@ -310,12 +407,7 @@ export default function Publications({ id }: PublicationsProps) {
           >
             <span>
               Total Publications:
-              <strong
-                className={`${
-                  theme === "dark" ? "text-yellow-400" : "text-yellow-800"
-                }
-            `}
-              >
+              <strong style={{ color: yellowColor }}>
                 {" "}
                 {publications.length}
               </strong>
@@ -323,24 +415,15 @@ export default function Publications({ id }: PublicationsProps) {
             <span>•</span>
             <span>
               Authored:{" "}
-              <strong
-                className={`${
-                  theme === "dark" ? "text-yellow-400" : "text-yellow-800"
-                }
-            `}
-              >
+              <strong style={{ color: yellowColor }}>
                 {publications.filter((p) => p.type === "authored").length}
               </strong>
             </span>
             <span>•</span>
             <span>
-              Co-authored:{" "}
-              <strong
-                className={`${
-                  theme === "dark" ? "text-yellow-400" : "text-yellow-800"
-                }
-            `}
-              >
+              Co-authored:
+              <strong style={{ color: yellowColor }}>
+                {" "}
                 {publications.filter((p) => p.type === "co-authored").length}
               </strong>
             </span>
